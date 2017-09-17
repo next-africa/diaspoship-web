@@ -1,0 +1,43 @@
+{
+  "name": "diaspoship-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "4.0.0-beta",
+    "coveralls": "^2.13.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.2.1",
+    "prettier": "^1.7.0",
+    "react": "^15.6.1",
+    "react-bootstrap": "^0.31.3",
+    "react-dom": "^15.6.1",
+    "react-helmet": "^5.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.13",
+    "source-map-explorer": "^1.4.0",
+    "styled-components": "^2.1.2"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
+      "git add"
+    ]
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "ci-test": "CI=true react-scripts test --env=jsdom --coverage --collectCoverageFrom=**/app/*.{js,jsx} && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 9009 -s public",
+    "build-storybook": "build-storybook -s public",
+    "analyze": "source-map-explorer build/static/js/main.*",
+    "precommit": "lint-staged"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-links": "^3.2.6",
+    "@storybook/react": "^3.2.8"
+  }
+}
