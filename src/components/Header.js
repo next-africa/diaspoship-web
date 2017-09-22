@@ -4,7 +4,9 @@ const navbarInstance = (
   <Navbar>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="">DISAPO-SHIP</a>
+        <a href="">
+          <img src="../../img/slide.jpg)" alt="diaspo-ship-logo" />
+        </a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
