@@ -1,24 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
-import {
-  Form,
-  FormGroup,
-  InputGroup,
-  FormControl,
-  Button,
-  Grid,
-  Row,
-  Col,
-  ControlLabel,
-  Well
-} from 'react-bootstrap';
+import { Form, FormGroup, Col, ControlLabel } from 'react-bootstrap';
 import Styles from './Styles';
 
 class SearchForm extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Styles.SearFormWrapper>
