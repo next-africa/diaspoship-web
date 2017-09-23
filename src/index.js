@@ -1,9 +1,6 @@
 // Bootstrap styles
 import 'bootstrap/dist/css/bootstrap.css';
 
-// Custom styles
-import './index.css';
-
 // React libs
 import React from 'react';
 import ReactDOM from 'react-dom';
