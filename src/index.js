@@ -1,5 +1,6 @@
 // Bootstrap styles
 import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 
 // React libs
 import React from 'react';

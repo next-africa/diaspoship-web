@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navbar, NavItem, Nav } from 'react-bootstrap';
+
 const navbarInstance = (
   <Navbar>
     <Navbar.Header>
@@ -25,6 +26,7 @@ const navbarInstance = (
     </Navbar.Collapse>
   </Navbar>
 );
+
 var Header = function() {
   return <div>{navbarInstance}</div>;
 };
