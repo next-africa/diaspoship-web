@@ -37,18 +37,18 @@ var SearFormWrapper = styled.div`
   margin: 0;
   padding: 0;
   border-radius: 10px;
-  margin: 0 0 20px;
+  margin: 0 0 0px;
   height: 42px;
   display: block;
 `;
 const SearchButton = styled.button`
-  background-color: #ffc800;
+  background-color: #4051b4;
   color: #0f233a;
   font-size: 18px;
   font-family: 'Roboto-Medium';
   width: 100%;
   text-transform: uppercase;
-  border: 2px solid #ffc800;
+  border: 2px solid #4051b4;
   border-radius: 0 10px 10px 0;
   cursor: pointer;
   height: 42px;
