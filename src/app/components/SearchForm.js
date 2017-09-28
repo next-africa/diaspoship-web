@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import styled from 'styled-components';
 
 import TextField from 'material-ui/TextField';
-import Styles from './Styles';
 import Grid from 'material-ui/Grid';
 
 const styles = theme => ({
@@ -32,7 +31,7 @@ let SearFormWrapper = styled.div`
   padding: 0;
   border-radius: 10px;
   margin: 0 0 0px;
-  height: 62px;
+  height: 64px;
   display: block;
 `;
 let SearchButton = styled.button`
@@ -55,7 +54,7 @@ class SearchForm extends React.Component {
       <div className={classes.root}>
         <SearFormWrapper>
           <form className={classes.container} noValidate autoComplete="off">
-            <Grid container spacing={12}>
+            <Grid container spacing={0}>
               <Grid item xs={5}>
                 <Paper className={classes.paper}>
                   <TextField
