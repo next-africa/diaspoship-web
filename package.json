@@ -3,13 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "3.3.7",
     "coveralls": "^2.13.1",
     "husky": "^0.14.3",
     "lint-staged": "^4.2.1",
     "prettier": "^1.7.0",
     "react": "^15.6.1",
-    "react-bootstrap": "^0.31.3",
     "react-dom": "^15.6.1",
     "react-helmet": "^5.2.0",
     "react-router": "^4.2.0",
@@ -38,6 +36,8 @@
   "devDependencies": {
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-links": "^3.2.6",
-    "@storybook/react": "^3.2.8"
+    "@storybook/react": "^3.2.8",
+    "material-ui": "^1.0.0-beta.12",
+    "material-ui-icons": "^1.0.0-beta.10"
   }
 }
