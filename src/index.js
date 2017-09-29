@@ -1,9 +1,3 @@
-// Bootstrap styles
-import 'bootstrap/dist/css/bootstrap.css';
-
-// Custom styles
-import './index.css';
-
 // React libs
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -17,6 +11,8 @@ import App from './app/App';
 
 ReactDOM.render(
   <BrowserRouter>
-    <App/>
-  </BrowserRouter>, document.getElementById('root'));
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
 registerServiceWorker();
