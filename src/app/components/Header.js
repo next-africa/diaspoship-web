@@ -5,7 +5,6 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import styled from 'styled-components';
 const styles = theme => ({
   root: {
     width: '100%'
@@ -22,7 +21,7 @@ function Header(props) {
   const classes = props.classes;
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="fixed" color="default">
         <Toolbar>
           <Typography type="title" color="inherit" className={classes.flex}>
             DIASPOSHIP
