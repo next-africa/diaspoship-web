@@ -1,10 +1,15 @@
+// React
 import React from 'react';
+import { intlShape } from 'react-intl';
+
+//Material-ui
 import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
-import styled from 'styled-components';
-
 import TextField from 'material-ui/TextField';
 import Grid from 'material-ui/Grid';
+
+//Styled-components
+import styled from 'styled-components';
 
 const styles = theme => ({
   root: {
@@ -46,6 +51,7 @@ let SearchButton = styled.button`
   cursor: pointer;
   height: 54px;
 `;
+
 class SearchForm extends React.Component {
   render() {
     const classes = this.props.classes;
@@ -59,8 +65,14 @@ class SearchForm extends React.Component {
                 <Paper className={classes.paper}>
                   <TextField
                     id="full-width"
-                    label="Je cherche un trajet de : "
-                    InputProps={{ placeholder: 'Indiquez ville ou pays' }}
+                    label={this.context.intl.formatMessage({
+                      id: 'components.search-form.from.label'
+                    })}
+                    InputProps={{
+                      placeholder: this.context.intl.formatMessage({
+                        id: 'components.search-form.from.placeholder'
+                      })
+                    }}
                     fullWidth
                     className={classes.TextField}
                     margin="normal"
@@ -71,8 +83,14 @@ class SearchForm extends React.Component {
                 <Paper className={classes.paper}>
                   <TextField
                     id="full-width"
-                    label="À : "
-                    InputProps={{ placeholder: 'Indiquez ville ou pays' }}
+                    label={this.context.intl.formatMessage({
+                      id: 'components.search-form.to.label'
+                    })}
+                    InputProps={{
+                      placeholder: this.context.intl.formatMessage({
+                        id: 'components.search-form.to.placeholder'
+                      })
+                    }}
                     fullWidth
                     className={classes.TextField}
                     margin="normal"
@@ -81,7 +99,11 @@ class SearchForm extends React.Component {
               </Grid>
               <Grid item xs={2}>
                 <Paper className={classes.paper}>
-                  <SearchButton>C'EST PARTI!</SearchButton>
+                  <SearchButton>
+                    {this.context.intl.formatMessage({
+                      id: 'components.search-form.buttons.submit'
+                    })}
+                  </SearchButton>
                 </Paper>
               </Grid>
             </Grid>
@@ -91,4 +113,9 @@ class SearchForm extends React.Component {
     );
   }
 }
+
+SearchForm.contextTypes = {
+  intl: intlShape.isRequired
+};
+
 export default withStyles(styles)(SearchForm);

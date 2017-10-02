@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 import SearchForm from './SearchForm';
 import styled from 'styled-components';
 
@@ -29,9 +30,7 @@ let Slider = function() {
       <SliderWrapper>
         <ContainerWrapper>
           <SearchMessage>
-            <p>
-              Confiez vos colis et vos achats à des particuliers qui voyagent
-            </p>
+            <FormattedMessage id="pages.home.why-prompt" />
           </SearchMessage>
           <SearchForm />
         </ContainerWrapper>
