@@ -13,14 +13,14 @@ import diasposhipApp from './reducers';
 import { selectLanguage } from './actions/translation';
 
 let store = createStore(diasposhipApp);
-store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
 
+store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
 const AppBody = ({ selectedLanguage, selectedTranslations }) => (
   <IntlProvider locale={selectedLanguage} messages={selectedTranslations}>
     <BrowserRouter>
       <div>
         <HelmetIntl messageId="pages.home.title" />
-        <Header />
+        <Header state={store.getState()} />
         <Slider />
       </div>
     </BrowserRouter>
