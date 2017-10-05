@@ -1,46 +1,34 @@
 import React from 'react';
-import Avatar from 'material-ui/Avatar';
-import FacebookLogin from 'react-facebook-login';
 
-import { FormattedMessage } from 'react-intl';
-let LoginButton = function(props) {
-  return (
-    <FacebookLogin
-      appId="503822979998360"
-      autoLoad={true}
-      fields="name,email,picture"
-      scope="public_profile,user_friends,user_actions.books"
-      callback={props.responseFacebook}
-      textButton={<FormattedMessage id="components.header.buttons.login" />}
-      icon="fa-facebook"
-    />
-  );
+import { connect } from 'react-redux';
+import PropTypes from 'proptypes';
+import { loginUser } from '../actions/session';
+import LoginButton from './LoginButton';
+
+export const Profile = function({ state, connected, onResponseFacebook }) {
+  console.log('test', state);
+  console.log('connected', connected);
+  console.log('onResponseFacebook', onResponseFacebook);
+  if (!state.connected) {
+    return <LoginButton onResponseFacebook={onResponseFacebook} />;
+  } else {
+    return <h3> test </h3>;
+  }
 };
-class Profile extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      connected: false
-    };
-    this.userData = {};
-    this.responseFacebook = this.responseFacebook.bind(this);
-  }
-  responseFacebook(response) {
-    console.log(response);
-    this.userData = response;
-    this.setState(function() {
-      return {
-        connected: true
-      };
-    });
-  }
-  render() {
-    if (!this.state.connected) {
-      return <LoginButton responseFacebook={this.responseFacebook} />;
-    } else {
-      return <Avatar alt="Remy Sharp" src={this.userData.picture.data.url} />;
-    }
-  }
-}
 
-export default Profile;
+Profile.propTypes = {
+  connected: PropTypes.bool.isRequired,
+  onResponseFacebook: PropTypes.func.isRequired
+};
+
+const mapStateProfileToProps = ({ session: { connected, response } }) => ({
+  connected,
+  response
+});
+
+const mapDispatchProfileToProps = dispatch => ({
+  onResponseFacebook: response => dispatch(loginUser({ response }))
+});
+export default connect(mapStateProfileToProps, mapDispatchProfileToProps)(
+  Profile
+);
