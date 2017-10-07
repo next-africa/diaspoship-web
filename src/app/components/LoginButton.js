@@ -5,20 +5,18 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 class LoginButton extends React.Component {
-  responseFacebook(response) {
-    console.log(response);
-  }
-
   render() {
+    let test = <FormattedMessage id="components.header.buttons.login" />;
+
     return (
       <div>
         <FacebookLogin
           appId="503822979998360"
-          autoLoad={true}
+          autoLoad={false}
           fields="name,email,picture"
-          xfbml={false}
+          xfbml={true}
           callback={this.props.onResponseFacebook}
-          textButton={<FormattedMessage id="components.header.buttons.login" />}
+          textButton={test}
           icon="fa-facebook"
         />
       </div>
