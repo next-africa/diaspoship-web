@@ -1,19 +1,15 @@
 import React from 'react';
-import FacebookLogin from 'react-facebook-login';
+// import FacebookLogin from 'react-facebook-login';
+import Button from 'material-ui/Button';
+import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
-let LoginButton = onResponseFacebook => {
-  return (
-    <FacebookLogin
-      appId="503822979998360"
-      autoLoad={true}
-      fields="name,email,picture"
-      scope="public_profile,user_friends,user_actions.books"
-      callback={function(userInfos) {
-        let connected = true;
-        onResponseFacebook({ connected, userInfos });
-      }}
-      textButton={<FormattedMessage id="components.header.buttons.login" />}
-      icon="fa-facebook"
-    />
-  );
+const LogoutButton = ({ onLogout }) => (
+  <Button onClick={onLogout}>
+    <FormattedMessage id="components.header.buttons.logout" />
+  </Button>
+);
+LogoutButton.propType = {
+  onLogout: PropTypes.func.isRequired
 };
+export default LogoutButton;

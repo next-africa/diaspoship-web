@@ -1,34 +1,33 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 import PropTypes from 'proptypes';
-import { loginUser } from '../actions/session';
-import LoginButton from './LoginButton';
+import LoginUser from '../container/LoginUser';
+import MenuProfile from './MenuProfile';
 
-export const Profile = function({ state, connected, onResponseFacebook }) {
-  console.log('test', state);
-  console.log('connected', connected);
-  console.log('onResponseFacebook', onResponseFacebook);
-  if (!state.connected) {
-    return <LoginButton onResponseFacebook={onResponseFacebook} />;
+const Profile = function({ connected, userInfos }) {
+  if (!connected) {
+    return (
+      <div>
+        <LoginUser />
+      </div>
+    );
   } else {
-    return <h3> test </h3>;
+    return (
+      <MenuProfile
+        name={userInfos.name}
+        pictureUrl={userInfos.picture.data.url}
+      />
+    );
   }
 };
 
 Profile.propTypes = {
-  connected: PropTypes.bool.isRequired,
-  onResponseFacebook: PropTypes.func.isRequired
+  connected: PropTypes.bool.isRequired
 };
 
-const mapStateProfileToProps = ({ session: { connected, response } }) => ({
+const mapStateProfileToProps = ({ session: { connected, userInfos } }) => ({
   connected,
-  response
+  userInfos
 });
 
-const mapDispatchProfileToProps = dispatch => ({
-  onResponseFacebook: response => dispatch(loginUser({ response }))
-});
-export default connect(mapStateProfileToProps, mapDispatchProfileToProps)(
-  Profile
-);
+export default connect(mapStateProfileToProps)(Profile);

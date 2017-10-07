@@ -1,24 +1,23 @@
 import React from 'react';
-import FacebookLogin from 'react-facebook-login';
+// import FacebookLogin from 'react-facebook-login';
+
+import { FacebookLogin } from 'react-facebook-login-component';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-const LoginButton = ({ onResponseFacebook }) => {
-  return (
+const LoginButton = ({ onResponseFacebook }) => (
+  <div>
     <FacebookLogin
-      appId="503822979998360"
-      autoLoad={true}
-      fields="name,email,picture"
-      scope="public_profile,user_friends,user_actions.books"
-      callback={function(userInfos) {
-        let connected = true;
-        onResponseFacebook({ connected, userInfos });
-      }}
-      textButton={<FormattedMessage id="components.header.buttons.login" />}
-      icon="fa-facebook"
+      socialId="503822979998360"
+      scope="public_profile,email"
+      responseHandler={onResponseFacebook}
+      xfbml={true}
+      fields="id,email,name, picture"
+      version="v2.5"
+      buttonText={<FormattedMessage id="components.header.buttons.login" />}
     />
-  );
-};
+  </div>
+);
 
 LoginButton.propType = {
   onResponseFacebook: PropTypes.func.isRequired
