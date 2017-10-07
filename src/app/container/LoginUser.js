@@ -2,23 +2,15 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/session';
 import LoginButton from '../components/LoginButton';
 
-const responseFacebook = response => {
-  let localUserInfo = {
-    connect: true,
-    name: response.name
-  };
-  localStorage.setItem('UserInfo', localUserInfo);
-};
-
-const mapStateToProps = state => {
-  return {
-    onResponseFacebook: responseFacebook
-  };
-};
+const mapStateToProps = ({ session: { connected, userInfos } }) => ({
+  connected,
+  userInfos
+});
 const mapDispatchToProps = dispatch => {
   return {
     onResponseFacebook: profile => {
-      dispatch(loginUser({ profile }));
+      let isConnected = true;
+      dispatch(loginUser({ isConnected, profile }));
     }
   };
 };

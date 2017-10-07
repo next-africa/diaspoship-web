@@ -14,7 +14,7 @@ export default handleActions(
       }
       localStorage.setItem('isConnected', true);
       return Object.assign({}, state, {
-        connected: true,
+        connected: payload.isConnected,
         userInfos: payload.profile
       });
     },
