@@ -1,13 +1,19 @@
+//React
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
+
+//Material UI
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Popover from 'material-ui/Popover';
 import Divider from 'material-ui/Divider';
-import LogoutUser from '../container/LogoutUser';
 import Avatar from 'material-ui/Avatar';
+
+//App Imports
+import LogoutUser from '../container/LogoutUser';
+
 const styles = theme => ({
   button: {
     marginBottom: theme.spacing.unit * 4

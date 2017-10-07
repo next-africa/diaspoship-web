@@ -1,4 +1,7 @@
+//React
 import { connect } from 'react-redux';
+
+//App Imports
 import { logoutUser } from '../actions/session';
 import LogoutButton from '../components/LogoutButton';
 

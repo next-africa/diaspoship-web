@@ -1,4 +1,7 @@
+//React
 import { connect } from 'react-redux';
+
+//App Import
 import { loginUser } from '../actions/session';
 import LoginButton from '../components/LoginButton';
 

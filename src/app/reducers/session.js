@@ -1,4 +1,7 @@
+//Redux
 import { handleActions } from 'redux-actions';
+
+//App Import
 import { logoutUser, loginUser } from '../actions/session';
 
 const INITIAL_STATE = {

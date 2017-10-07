@@ -1,7 +1,10 @@
+//React
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'proptypes';
 import LoginUser from '../container/LoginUser';
+
+//App Imports
 import MenuProfile from './MenuProfile';
 
 const Profile = function({ connected, userInfos }) {

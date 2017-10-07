@@ -1,5 +1,4 @@
 import React from 'react';
-// import FacebookLogin from 'react-facebook-login';
 import Button from 'material-ui/Button';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';

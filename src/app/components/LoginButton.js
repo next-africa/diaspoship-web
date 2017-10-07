@@ -1,7 +1,6 @@
+// React
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
-
-// import { FacebookLogin } from 'react-facebook-login-component';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
