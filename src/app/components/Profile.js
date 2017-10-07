@@ -5,7 +5,7 @@ import LoginUser from '../container/LoginUser';
 import MenuProfile from './MenuProfile';
 
 const Profile = function({ connected, userInfos }) {
-  if (!connected || localStorage.getItem('isConnected') !== 'true') {
+  if (!connected) {
     return (
       <div>
         <LoginUser />

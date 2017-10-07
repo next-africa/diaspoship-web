@@ -9,17 +9,15 @@ export default handleActions(
   {
     [loginUser]: (state, { payload }) => {
       let connected = state.connected;
-      if (payload.profile.status === 'unknown' || connected) {
+      if (connected) {
         return state;
       }
-      localStorage.setItem('isConnected', true);
       return Object.assign({}, state, {
         connected: payload.isConnected,
         userInfos: payload.profile
       });
     },
     [logoutUser]: (state, { payload }) => {
-      localStorage.setItem('isConnected', false);
       return Object.assign({}, state, {
         connected: false,
         userInfos: undefined
