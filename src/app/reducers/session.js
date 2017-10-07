@@ -7,18 +7,19 @@ const INITIAL_STATE = {
 };
 export default handleActions(
   {
-    [loginUser]: (state, action) => {
+    [loginUser]: (state, { payload }) => {
       let connected = state.connected;
-
-      if (connected) {
+      if (payload.profile.status === 'unknown' || connected) {
         return state;
       }
+      localStorage.setItem('isConnected', true);
       return Object.assign({}, state, {
-        connected: action.payload.response.connected,
-        userInfos: action.payload.response.userInfos
+        connected: true,
+        userInfos: payload.profile
       });
     },
-    [logoutUser]: (state, action) => {
+    [logoutUser]: (state, { payload }) => {
+      localStorage.setItem('isConnected', false);
       return Object.assign({}, state, {
         connected: false,
         userInfos: undefined
