@@ -6,20 +6,18 @@ import { FormattedMessage } from 'react-intl';
 
 class LoginButton extends React.Component {
   render() {
-    let test = <FormattedMessage id="components.header.buttons.login" />;
+    let text = <FormattedMessage id="components.header.buttons.login" />;
 
     return (
-      <div>
-        <FacebookLogin
-          appId="503822979998360"
-          autoLoad={false}
-          fields="name,email,picture"
-          xfbml={true}
-          callback={this.props.onResponseFacebook}
-          textButton={test}
-          icon="fa-facebook"
-        />
-      </div>
+      <FacebookLogin
+        appId="503822979998360"
+        autoLoad={false}
+        fields="name,email,picture"
+        xfbml={true}
+        callback={this.props.onResponseFacebook}
+        textButton={text}
+        icon="fa-facebook"
+      />
     );
   }
 }
