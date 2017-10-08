@@ -9,6 +9,8 @@ export default {
   'components.search-form.to.label': 'to:',
   'components.search-form.to.placeholder': 'Enter city to ship to',
 
+  'components.language-selector.label': 'Change language',
+
   'languages.en': 'English',
   'languages.fr': 'French',
 
