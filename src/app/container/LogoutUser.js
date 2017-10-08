@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onLogout: profile => {
-      let isConnected = false;
+      const isConnected = false;
       dispatch(logoutUser({ isConnected, profile }));
     }
   };
