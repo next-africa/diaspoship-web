@@ -3,26 +3,31 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { FB_APP_ID } from '../constants';
+import { injectIntl, intlShape } from 'react-intl';
 
-class LoginButton extends React.Component {
-  render() {
-    let text = <FormattedMessage id="components.header.buttons.login" />;
-
-    return (
-      <FacebookLogin
-        appId="503822979998360"
-        autoLoad={false}
-        fields="name,email,picture"
-        xfbml={true}
-        callback={this.props.onResponseFacebook}
-        textButton={text}
-        icon="fa-facebook"
-      />
-    );
-  }
-}
+export const LoginButton = ({
+  onResponseFacebook,
+  intl: { formatMessage },
+  messageId,
+  ...props
+}) => (
+  <FacebookLogin
+    appId={FB_APP_ID}
+    autoLoad={false}
+    fields="name,email,picture"
+    callback={onResponseFacebook}
+    textButton={formatMessage({
+      id: messageId,
+      defaultMessage: props.defaultMessage
+    })}
+    icon="fa-facebook"
+  />
+);
 
 LoginButton.propType = {
-  onResponseFacebook: PropTypes.func.isRequired
+  onResponseFacebook: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
 };
-export default LoginButton;
+
+export default injectIntl(LoginButton);

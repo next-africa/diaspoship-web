@@ -1,14 +1,24 @@
 import React from 'react';
 import Button from 'material-ui/Button';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 
-const LogoutButton = ({ onLogout }) => (
+import { injectIntl, intlShape } from 'react-intl';
+
+export const LogoutButton = ({
+  onLogout,
+  intl: { formatMessage },
+  messageId,
+  ...props
+}) => (
   <Button onClick={onLogout}>
-    <FormattedMessage id="components.header.buttons.logout" />
+    {formatMessage({
+      id: messageId
+    })}
   </Button>
 );
 LogoutButton.propType = {
-  onLogout: PropTypes.func.isRequired
+  onLogout: PropTypes.func.isRequired,
+  intl: intlShape.isRequired
 };
-export default LogoutButton;
+
+export default injectIntl(LogoutButton);

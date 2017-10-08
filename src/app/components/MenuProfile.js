@@ -86,7 +86,7 @@ class MenuProfile extends React.Component {
 
           <Divider />
           <Typography className={classes.typography}>
-            <LogoutUser />
+            <LogoutUser messageId="components.header.buttons.logout" />
           </Typography>
         </Popover>
       </div>
