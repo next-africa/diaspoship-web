@@ -13,13 +13,15 @@ const mapStateToProps = ({ session: { connected, userInfos } }) => ({
 const mapDispatchToProps = dispatch => {
   return {
     onResponseFacebook: profile => {
-      const isConnected = true;
-      const userInfos = {
-        email: profile.email,
-        name: profile.name,
-        picture: profile.picture
-      };
-      dispatch(loginUser({ isConnected, userInfos }));
+      if (profile.status !== 'unknown') {
+        const isConnected = true;
+        const userInfos = {
+          email: profile.email,
+          name: profile.name,
+          picture: profile.picture
+        };
+        dispatch(loginUser({ isConnected, userInfos }));
+      }
     }
   };
 };

@@ -15,6 +15,7 @@ const INITIAL_STATE = {
 export default handleActions(
   {
     [loginUser]: (state, { payload }) => {
+      debugger;
       let connected = state.connected;
       if (connected) {
         return state;

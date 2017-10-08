@@ -2,7 +2,6 @@
 import React from 'react';
 import FacebookLogin from 'react-facebook-login';
 import PropTypes from 'prop-types';
-import { FormattedMessage } from 'react-intl';
 import { FB_APP_ID } from '../constants';
 import { injectIntl, intlShape } from 'react-intl';
 
