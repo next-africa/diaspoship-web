@@ -6,7 +6,11 @@ import { logoutUser, loginUser } from '../actions/session';
 
 const INITIAL_STATE = {
   connected: false,
-  userInfos: undefined
+  userInfos: {
+    email: null,
+    name: null,
+    picture: null
+  }
 };
 export default handleActions(
   {
@@ -17,13 +21,18 @@ export default handleActions(
       }
       return Object.assign({}, state, {
         connected: payload.isConnected,
-        userInfos: payload.profile
+        userInfos: payload.userInfos
       });
     },
     [logoutUser]: (state, { payload }) => {
+      let infos = {
+        email: null,
+        name: null,
+        picture: null
+      };
       return Object.assign({}, state, {
         connected: false,
-        userInfos: undefined
+        userInfos: infos
       });
     }
   },

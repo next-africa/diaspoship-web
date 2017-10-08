@@ -1,7 +1,7 @@
 export default {
   'components.header.buttons.help': 'Comment ça marche?',
   'components.header.buttons.login': 'Se connecter',
-  'components.header.buttons.logout': 'se deconneceter',
+  'components.header.buttons.logout': 'se deconnecter',
   'components.header.buttons.signup': "S'enregistrer",
 
   'components.search-form.from.label': 'De ?',
