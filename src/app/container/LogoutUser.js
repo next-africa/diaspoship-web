@@ -18,6 +18,11 @@ const mapDispatchToProps = dispatch => {
   return {
     onLogout: profile => {
       const isConnected = false;
+      const userData = {
+        isConnected: isConnected,
+        userInfos: { name: null, email: null, picture: null }
+      };
+      localStorage.setItem('userData', JSON.stringify(userData));
       dispatch(logoutUser({ isConnected, profile }));
     }
   };

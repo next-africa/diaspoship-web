@@ -20,6 +20,8 @@ const mapDispatchToProps = dispatch => {
           name: profile.name,
           picture: profile.picture
         };
+        const userData = { isConnected: isConnected, userInfos: userInfos };
+        localStorage.setItem('userData', JSON.stringify(userData));
         dispatch(loginUser({ isConnected, userInfos }));
       }
     }
