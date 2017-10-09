@@ -25,18 +25,7 @@ export default handleActions(
       });
     },
 
-    // [logoutUser]: () => INITIAL_STATE
-    [logoutUser]: (state, { payload }) => {
-      let infos = {
-        email: null,
-        name: null,
-        picture: null
-      };
-      return Object.assign({}, state, {
-        connected: false,
-        userInfos: infos
-      });
-    }
+    [logoutUser]: () => INITIAL_STATE
   },
   INITIAL_STATE
 );
