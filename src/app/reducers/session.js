@@ -24,6 +24,8 @@ export default handleActions(
         userInfos: payload.userInfos
       });
     },
+
+    // [logoutUser]: () => INITIAL_STATE
     [logoutUser]: (state, { payload }) => {
       let infos = {
         email: null,

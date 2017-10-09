@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'proptypes';
-import LoginUser from '../container/LoginUser';
+import LoginUser from './LoginUser';
 
 //App Imports
 import MenuProfile from './MenuProfile';

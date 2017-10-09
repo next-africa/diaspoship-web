@@ -12,7 +12,7 @@ import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
 
 //App Imports
-import LogoutUser from '../container/LogoutUser';
+import LogoutUser from './LogoutUser';
 
 const styles = theme => ({
   button: {

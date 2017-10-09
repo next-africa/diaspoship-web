@@ -10,14 +10,10 @@ import Slider from './components/Home';
 import HelmetIntl from './components/HelmetIntl';
 import diasposhipApp from './reducers';
 import { selectLanguage } from './actions/translation';
-import { loginUser } from './actions/session';
 
 let store = createStore(diasposhipApp);
 
 store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
-
-const userData = JSON.parse(localStorage.getItem('userData'));
-store.dispatch(loginUser(userData));
 
 const AppBody = ({ selectedLanguage, selectedTranslations }) => (
   <IntlProvider locale={selectedLanguage} messages={selectedTranslations}>
