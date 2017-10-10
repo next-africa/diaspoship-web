@@ -64,7 +64,7 @@ export class LoginComponent extends React.Component {
     this.loadFbLoginApi();
   }
 
-  testAPI() {
+  getUserFBInfos() {
     FB.api(
       '/me',
       { fields: 'id, name, email, picture' },
@@ -84,7 +84,7 @@ export class LoginComponent extends React.Component {
 
   statusChangeCallback(response) {
     if (response.status === 'connected') {
-      this.testAPI();
+      this.getUserFBInfos();
     } else if (response.status === 'not_authorized') {
       console.log('Please log into this app.');
     } else {
