@@ -1,5 +1,4 @@
 //React
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
@@ -9,58 +8,8 @@ import Button from 'material-ui/Button';
 import { loginUser, logoutUser } from '../actions/session';
 import { FB_APP_ID } from '../constants';
 import MenuProfile from './MenuProfile';
-// export const LoginButton = ({
-//   onResponseFacebook,
-//   intl: { formatMessage },
-//   messageId,
-//   ...props
-// }) => (
-//   <FacebookLogin
-//     appId={FB_APP_ID}
-//     autoLoad={true}
-//     fields="name,email,picture"
-//     cookie={true}
-//     callback={onResponseFacebook}
-//     textButton={formatMessage({
-//       id: messageId,
-//       defaultMessage: props.defaultMessage
-//     })}
-//     icon="fa-facebook"
-//   />
-// );
-//
-// LoginButton.propType = {
-//   onResponseFacebook: PropTypes.func.isRequired,
-//   intl: intlShape.isRequired
-// };
-//
-// const mapStateToProps = ({ session: { connected, userInfos } }) => ({
-//   connected,
-//   userInfos,
-//   messageId: 'components.header.buttons.login'
-// });
-//
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onResponseFacebook: profile => {
-//       if (profile.status !== 'unknown') {
-//         const isConnected = true;
-//         const userInfos = {
-//           email: profile.email,
-//           name: profile.name,
-//           picture: profile.picture
-//         };
-//         dispatch(loginUser({ isConnected, userInfos }));
-//       }
-//     }
-//   };
-// };
-//
-// const LoginUser = connect(mapStateToProps, mapDispatchToProps)(
-//   injectIntl(LoginButton)
-// );
-/*global FB*/
 
+/*global FB*/
 const Login = ({ userInfos, onClick }) => (
   <Button onClick={onClick}>
     <FormattedMessage id="components.header.buttons.login" />
