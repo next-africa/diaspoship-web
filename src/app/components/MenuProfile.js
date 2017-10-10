@@ -2,6 +2,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 //Material UI
 import { withStyles } from 'material-ui/styles';
@@ -10,9 +11,6 @@ import Button from 'material-ui/Button';
 import Popover from 'material-ui/Popover';
 import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
-
-//App Imports
-import LogoutUser from './LogoutUser';
 
 const styles = theme => ({
   button: {
@@ -86,7 +84,9 @@ class MenuProfile extends React.Component {
 
           <Divider />
           <Typography className={classes.typography}>
-            <LogoutUser messageId="components.header.buttons.logout" />
+            <Button onClick={this.props.onLogout}>
+              <FormattedMessage id="components.header.buttons.logout" />
+            </Button>
           </Typography>
         </Popover>
       </div>

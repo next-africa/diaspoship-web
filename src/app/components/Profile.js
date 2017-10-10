@@ -1,36 +1,206 @@
 //React
+
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'proptypes';
-import LoginUser from './LoginUser';
+import { FormattedMessage } from 'react-intl';
 
-//App Imports
+import Button from 'material-ui/Button';
+//App Import
+import { loginUser, logoutUser } from '../actions/session';
+import { FB_APP_ID } from '../constants';
 import MenuProfile from './MenuProfile';
+// export const LoginButton = ({
+//   onResponseFacebook,
+//   intl: { formatMessage },
+//   messageId,
+//   ...props
+// }) => (
+//   <FacebookLogin
+//     appId={FB_APP_ID}
+//     autoLoad={true}
+//     fields="name,email,picture"
+//     cookie={true}
+//     callback={onResponseFacebook}
+//     textButton={formatMessage({
+//       id: messageId,
+//       defaultMessage: props.defaultMessage
+//     })}
+//     icon="fa-facebook"
+//   />
+// );
+//
+// LoginButton.propType = {
+//   onResponseFacebook: PropTypes.func.isRequired,
+//   intl: intlShape.isRequired
+// };
+//
+// const mapStateToProps = ({ session: { connected, userInfos } }) => ({
+//   connected,
+//   userInfos,
+//   messageId: 'components.header.buttons.login'
+// });
+//
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onResponseFacebook: profile => {
+//       if (profile.status !== 'unknown') {
+//         const isConnected = true;
+//         const userInfos = {
+//           email: profile.email,
+//           name: profile.name,
+//           picture: profile.picture
+//         };
+//         dispatch(loginUser({ isConnected, userInfos }));
+//       }
+//     }
+//   };
+// };
+//
+// const LoginUser = connect(mapStateToProps, mapDispatchToProps)(
+//   injectIntl(LoginButton)
+// );
+/*global FB*/
 
-const Profile = function({ connected, userInfos }) {
-  if (!connected) {
-    return (
-      <div>
-        <LoginUser />
-      </div>
-    );
-  } else {
-    return (
-      <MenuProfile
-        name={userInfos.name}
-        pictureUrl={userInfos.picture.data.url}
-      />
+const Login = ({ userInfos, onClick }) => (
+  <Button onClick={onClick}>
+    <FormattedMessage id="components.header.buttons.login" />
+  </Button>
+);
+
+const Logout = ({ userInfos, onClick }) => (
+  <MenuProfile
+    name={userInfos.name}
+    pictureUrl={userInfos.picture}
+    onLogout={onClick}
+  />
+);
+export class LoginComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    console.log('props', props);
+    this.checkLoginState = this.checkLoginState.bind(this);
+    this.handleFBLogin = this.handleFBLogin.bind(this);
+    this.statusChangeCallback = this.statusChangeCallback.bind(this);
+    this.handleFBLogout = this.handleFBLogout.bind(this);
+  }
+
+  loadFbLoginApi() {
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId: FB_APP_ID,
+        cookie: true,
+        autoLoad: true,
+        xfbml: true,
+        version: 'v2.10'
+      });
+      FB.getLoginStatus(
+        function(response) {
+          this.statusChangeCallback(response);
+        }.bind(this)
+      );
+    }.bind(this);
+
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = '//connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    })(document, 'script', 'facebook-jssdk');
+  }
+
+  componentDidMount() {
+    this.loadFbLoginApi();
+  }
+
+  testAPI() {
+    FB.api(
+      '/me',
+      { fields: 'id, name, email, picture' },
+      function(response) {
+        const profile = {
+          connected: true,
+          userInfos: {
+            email: response.email,
+            name: response.name,
+            picture: response.picture.data.url
+          }
+        };
+        this.props.loginDiapoShip(profile);
+      }.bind(this)
     );
   }
-};
 
-Profile.propTypes = {
-  connected: PropTypes.bool.isRequired
-};
+  statusChangeCallback(response) {
+    if (response.status === 'connected') {
+      this.testAPI();
+    } else if (response.status === 'not_authorized') {
+      console.log('Please log into this app.');
+    } else {
+      console.log('Please log into this facebook.');
+    }
+  }
 
-const mapStateProfileToProps = ({ session: { connected, userInfos } }) => ({
+  checkLoginState() {
+    FB.getLoginStatus(
+      function(response) {
+        this.statusChangeCallback(response);
+      }.bind(this)
+    );
+  }
+
+  handleFBLogin() {
+    FB.login(this.checkLoginState());
+  }
+
+  handleFBLogout() {
+    FB.logout(function(response) {
+      console.log('deconexion', response);
+    });
+
+    this.props.logoutDiapoShip();
+  }
+
+  render() {
+    if (this.props.connected) {
+      return (
+        <div>
+          <Logout
+            userInfos={this.props.userInfos}
+            onClick={this.handleFBLogout}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <Login
+            userInfos={this.props.userInfos}
+            onClick={this.handleFBLogin}
+          />
+        </div>
+      );
+    }
+  }
+}
+const mapStateToProps = ({ session: { connected, userInfos } }) => ({
   connected,
   userInfos
 });
 
-export default connect(mapStateProfileToProps)(Profile);
+const mapDispatchToProps = dispatch => {
+  return {
+    loginDiapoShip: profile => {
+      dispatch(loginUser(profile));
+    },
+    logoutDiapoShip: profile => {
+      dispatch(logoutUser());
+    }
+  };
+};
+
+const Profile = connect(mapStateToProps, mapDispatchToProps)(LoginComponent);
+export default Profile;

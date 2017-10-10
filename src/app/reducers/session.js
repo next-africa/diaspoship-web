@@ -20,7 +20,7 @@ export default handleActions(
         return state;
       }
       return Object.assign({}, state, {
-        connected: payload.isConnected,
+        connected: payload.connected,
         userInfos: payload.userInfos
       });
     },
