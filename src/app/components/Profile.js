@@ -26,7 +26,6 @@ const Logout = ({ userInfos, onClick }) => (
 export class LoginComponent extends React.Component {
   constructor(props) {
     super(props);
-    console.log('props', props);
     this.checkLoginState = this.checkLoginState.bind(this);
     this.handleFBLogin = this.handleFBLogin.bind(this);
     this.statusChangeCallback = this.statusChangeCallback.bind(this);
