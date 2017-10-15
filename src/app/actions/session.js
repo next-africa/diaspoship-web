@@ -74,7 +74,7 @@ export function initializeFacebookSDK() {
     (function(d, s, id) {
       let js,
         fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
+      if (d.getElementById(id) || !fjs) return;
       js = d.createElement(s);
       js.id = id;
       js.src = '//connect.facebook.net/en_US/sdk.js';
