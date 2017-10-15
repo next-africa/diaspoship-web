@@ -7,5 +7,3 @@ export const AVAILABLE_LANGUAGES = {
   en: englishTranslation,
   fr: frenchTranslation
 };
-
-export const FB_APP_ID = '503822979998360';

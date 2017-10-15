@@ -1,6 +1,5 @@
 //React
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -9,7 +8,6 @@ import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Popover from 'material-ui/Popover';
-import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
 
 const styles = theme => ({
@@ -20,6 +18,7 @@ const styles = theme => ({
     margin: theme.spacing.unit * 2
   }
 });
+
 class MenuProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -38,13 +37,13 @@ class MenuProfile extends React.Component {
       open: false
     });
   };
-  handleClickButton = () => {
+  handleClickButton = ({ currentTarget }) => {
     this.setState({
       open: true,
-      anchorEl: findDOMNode(this.button)
+      anchorEl: currentTarget
     });
   };
-  button = null;
+
   render() {
     const classes = this.props.classes;
     const {
@@ -57,14 +56,13 @@ class MenuProfile extends React.Component {
     } = this.state;
     return (
       <div>
-        <Button
-          ref={node => {
-            this.button = node;
-          }}
-          onClick={this.handleClickButton}
-        >
+        <Button onClick={this.handleClickButton}>
           <Avatar alt={this.props.name} src={this.props.pictureUrl} />
+          <Typography className={classes.typography}>
+            {this.props.name}
+          </Typography>
         </Button>
+
         <Popover
           open={open}
           anchorEl={anchorEl}
@@ -79,11 +77,6 @@ class MenuProfile extends React.Component {
           }}
         >
           <Typography className={classes.typography}>
-            {this.props.name}
-          </Typography>
-
-          <Divider />
-          <Typography className={classes.typography}>
             <Button onClick={this.props.onLogout}>
               <FormattedMessage id="components.header.buttons.logout" />
             </Button>
@@ -93,6 +86,7 @@ class MenuProfile extends React.Component {
     );
   }
 }
+
 MenuProfile.propTypes = {
   classes: PropTypes.object.isRequired
 };
