@@ -8,10 +8,12 @@ import Header from './components/Header';
 import Slider from './components/Home';
 import HelmetIntl from './components/HelmetIntl';
 import { selectLanguage } from './actions/translation';
-
 import configureStore from './store/configureStore';
+import { initializeFacebookSDK } from './actions/session';
+
 const store = configureStore();
 store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
+store.dispatch(initializeFacebookSDK());
 
 const AppBody = ({ selectedLanguage, selectedTranslations }) => (
   <IntlProvider locale={selectedLanguage} messages={selectedTranslations}>

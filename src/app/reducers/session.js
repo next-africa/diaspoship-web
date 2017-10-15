@@ -3,18 +3,17 @@ import { handleActions } from 'redux-actions';
 
 //App Import
 import {
-  logoutUser,
+  resetUser,
   isUserConnected,
-  userIsLoading,
-  isUserAuthorized,
+  userIsConnecting,
   userFetchDataSuccess
 } from '../actions/session';
 
 const INITIAL_STATE = {
   isConnected: false,
-  isAuthorized: false,
-  isLoading: false,
-  userInfos: {
+  isConnecting: false,
+  user: {
+    id: null,
     email: null,
     name: null,
     picture: null
@@ -33,21 +32,11 @@ export default handleActions(
           return state;
       }
     },
-    [userIsLoading]: (state, action) => {
+    [userIsConnecting]: (state, action) => {
       switch (action.type) {
         case 'ITEMS_IS_LOADING':
           return Object.assign({}, state, {
-            isLoading: action.payload
-          });
-        default:
-          return state;
-      }
-    },
-    [isUserAuthorized]: (state, action) => {
-      switch (action.type) {
-        case 'IS_USER_AUTHORIZED':
-          return Object.assign({}, state, {
-            isAuthorized: action.payload
+            isConnecting: action.payload
           });
         default:
           return state;
@@ -57,13 +46,13 @@ export default handleActions(
       switch (action.type) {
         case 'USER_FETCH_DATA_SUCCESS':
           return Object.assign({}, state, {
-            userInfos: action.payload
+            user: action.payload
           });
         default:
           return state;
       }
     },
-    [logoutUser]: () => INITIAL_STATE
+    [resetUser]: () => INITIAL_STATE
   },
   INITIAL_STATE
 );

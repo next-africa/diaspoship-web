@@ -2,74 +2,63 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import PropTypes from 'proptypes';
+
 // Material Ui
 import Button from 'material-ui/Button';
+
 //App Import
-import { fetchUserDataFromFB } from '../actions/session';
+import { login, logout } from '../actions/session';
 import MenuProfile from './MenuProfile';
 
-/*global FB*/
-const Login = ({ userInfos, onClick }) => (
-  <Button onClick={onClick}>
+const Login = ({ onLogin }) => (
+  <Button onClick={onLogin}>
     <FormattedMessage id="components.header.buttons.login" />
   </Button>
 );
 
-const User = ({ userInfos, onClick }) => (
-  <MenuProfile
-    name={userInfos.name}
-    pictureUrl={userInfos.picture}
-    onLogout={onClick}
-  />
+Login.propTypes = {
+  onLogin: PropTypes.func.isRequired
+};
+
+const User = ({ user, onLogout }) => (
+  <MenuProfile name={user.name} pictureUrl={user.picture} onLogout={onLogout} />
 );
-export class LoginComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleFBLogin = this.handleFBLogin.bind(this);
-    this.handleFBLogout = this.handleFBLogout.bind(this);
-  }
 
-  componentDidMount() {
-    this.props.fetchData();
-  }
+User.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired
+  }),
+  onLogout: PropTypes.func.isRequired
+};
 
-  handleFBLogin() {
-    FB.login();
-    this.props.fetchData();
-  }
-
-  handleFBLogout() {
-    FB.logout(function(response) {
-      console.log('deconexion', response);
-    });
-    this.props.fetchData();
-  }
-
-  render() {
-    if (this.props.isConnected) {
-      return (
-        <User userInfos={this.props.userInfos} onClick={this.handleFBLogout} />
-      );
-    }
-    if (this.props.isLoading) {
-      return <p>Loading…</p>;
-    }
-
-    return <Login onClick={this.handleFBLogin} />;
-  }
-}
-const mapStateToProps = ({
-  session: { isConnected, isAuthorized, isLoading, userInfos }
-}) => ({
+const LoginComponent = ({
   isConnected,
-  isAuthorized,
-  isLoading,
-  userInfos
+  isConnecting,
+  user,
+  onLogin,
+  onLogout
+}) => {
+  if (isConnecting) {
+    return <p>Loading…</p>;
+  } else if (isConnected) {
+    return <User user={user} onLogout={onLogout} />;
+  } else {
+    return <Login onLogin={onLogin} />;
+  }
+};
+
+const mapStateToProps = ({ session: { isConnecting, user } }) => ({
+  isConnecting,
+  isConnected: user.id !== null,
+  user
 });
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(fetchUserDataFromFB())
+    onLogin: () => dispatch(login()),
+    onLogout: () => dispatch(logout())
   };
 };
 
