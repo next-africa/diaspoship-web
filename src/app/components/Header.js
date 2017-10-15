@@ -15,15 +15,12 @@ import AccountIcon from 'material-ui-icons/AccountCircle';
 import LanguageSelector from './LanguageSelector';
 
 const styles = theme => ({
-  root: {
-    width: '100%'
-  },
-  flex: {
+  appTitle: {
     flex: 1
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
+
+  appBar: {
+    width: '100%'
   },
 
   toolbarButtonWithText: {
@@ -48,42 +45,44 @@ function Header({ classes, intl: { formatMessage }, ...props }) {
     id: 'components.header.buttons.login'
   });
   return (
-    <div className={classes.root} {...props}>
-      <AppBar position="fixed" color="default">
-        <Toolbar>
-          <Typography type="title" color="inherit" className={classes.flex}>
-            DIASPOSHIP
-          </Typography>
-          <IconButton
-            aria-label={loginButtonText}
-            className={classes.toolbarButtonWithoutText}
-          >
-            <AccountIcon />
-          </IconButton>
-          <Button
-            aria-label={loginButtonText}
-            className={classes.toolbarButtonWithText}
-          >
-            <AccountIcon />
-            <span>{loginButtonText}</span>
-          </Button>
-          <IconButton
-            aria-label={helpButtonText}
-            className={classes.toolbarButtonWithoutText}
-          >
-            <HelpIcon />
-          </IconButton>
-          <Button
-            aria-label={helpButtonText}
-            className={classes.toolbarButtonWithText}
-          >
-            <HelpIcon />
-            <span>{helpButtonText}</span>
-          </Button>
-          <LanguageSelector />
-        </Toolbar>
-      </AppBar>
-    </div>
+    <AppBar className={classes.appBar} {...props} position="fixed">
+      <Toolbar>
+        <Typography type="title" color="inherit" className={classes.appTitle}>
+          DIASPOSHIP
+        </Typography>
+        <IconButton
+          color="contrast"
+          aria-label={loginButtonText}
+          className={classes.toolbarButtonWithoutText}
+        >
+          <AccountIcon />
+        </IconButton>
+        <Button
+          color="contrast"
+          aria-label={loginButtonText}
+          className={classes.toolbarButtonWithText}
+        >
+          <AccountIcon />
+          <span>{loginButtonText}</span>
+        </Button>
+        <IconButton
+          color="contrast"
+          aria-label={helpButtonText}
+          className={classes.toolbarButtonWithoutText}
+        >
+          <HelpIcon />
+        </IconButton>
+        <Button
+          color="contrast"
+          aria-label={helpButtonText}
+          className={classes.toolbarButtonWithText}
+        >
+          <HelpIcon />
+          <span>{helpButtonText}</span>
+        </Button>
+        <LanguageSelector />
+      </Toolbar>
+    </AppBar>
   );
 }
 

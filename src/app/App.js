@@ -7,7 +7,7 @@ import { connect, Provider } from 'react-redux';
 
 //App imports
 import Header from './components/Header';
-import Slider from './components/Slider';
+import Slider from './components/Home';
 import HelmetIntl from './components/HelmetIntl';
 import diasposhipApp from './reducers';
 import { selectLanguage } from './actions/translation';
