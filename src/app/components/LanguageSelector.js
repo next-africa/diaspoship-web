@@ -44,6 +44,7 @@ class LanguageSelectorComponent extends React.Component {
     return (
       <div>
         <IconButton
+          color="contrast"
           aria-label={this.context.intl.formatMessage({
             id: 'components.language-selector.label'
           })}
