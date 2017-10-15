@@ -6,7 +6,7 @@ import {
   resetUser,
   isUserConnected,
   userIsConnecting,
-  userFetchDataSuccess
+  setUser
 } from '../actions/session';
 
 const INITIAL_STATE = {
@@ -22,35 +22,20 @@ const INITIAL_STATE = {
 
 export default handleActions(
   {
-    [isUserConnected]: (state, action) => {
-      switch (action.type) {
-        case 'IS_USER_CONNECTED':
-          return Object.assign({}, state, {
-            isConnected: action.payload
-          });
-        default:
-          return state;
-      }
+    [isUserConnected]: (state, { payload }) => {
+      return Object.assign({}, state, {
+        isConnected: payload
+      });
     },
-    [userIsConnecting]: (state, action) => {
-      switch (action.type) {
-        case 'ITEMS_IS_LOADING':
-          return Object.assign({}, state, {
-            isConnecting: action.payload
-          });
-        default:
-          return state;
-      }
+    [userIsConnecting]: (state, { payload }) => {
+      return Object.assign({}, state, {
+        isConnecting: payload
+      });
     },
-    [userFetchDataSuccess]: (state, action) => {
-      switch (action.type) {
-        case 'USER_FETCH_DATA_SUCCESS':
-          return Object.assign({}, state, {
-            user: action.payload
-          });
-        default:
-          return state;
-      }
+    [setUser]: (state, { payload }) => {
+      return Object.assign({}, state, {
+        user: payload
+      });
     },
     [resetUser]: () => INITIAL_STATE
   },

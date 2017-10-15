@@ -1,8 +1,8 @@
 import { createAction } from 'redux-actions';
 export const resetUser = createAction('LOGOUT_USER');
 export const isUserConnected = createAction('IS_USER_CONNECTED');
-export const userIsConnecting = createAction('ITEMS_IS_LOADING');
-export const userFetchDataSuccess = createAction('USER_FETCH_DATA_SUCCESS');
+export const userIsConnecting = createAction('USER_IS_CONNECTING');
+export const setUser = createAction('USER_FETCH_DATA_SUCCESS');
 const FB_APP_ID = process.env.REACT_APP_SECRET_FB_APP_ID;
 
 export function login() {
@@ -33,7 +33,7 @@ export function loadUserInfos() {
       if (response && !response.error) {
         const { id, email, name, picture } = response;
         dispatch(
-          userFetchDataSuccess({
+          setUser({
             id,
             email,
             name: name.split(' ')[0],
