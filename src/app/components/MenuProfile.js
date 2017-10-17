@@ -57,7 +57,7 @@ class MenuProfile extends React.Component {
     return (
       <div>
         <Button onClick={this.handleClickButton}>
-          <Avatar alt={this.props.name} src={this.props.pictureUrl} />
+          <Avatar alt={this.props.name} src={this.props.picture} />
           <Typography className={classes.typography}>
             {this.props.name}
           </Typography>

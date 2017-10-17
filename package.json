@@ -30,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test-coverage": "react-scripts test --env=jsdom --coverage",
     "ci-test": "CI=true react-scripts test --env=jsdom --coverage --collectCoverageFrom=**/app/**/*.{js,jsx} && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",

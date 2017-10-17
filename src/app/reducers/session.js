@@ -9,7 +9,7 @@ import {
   setUser
 } from '../actions/session';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   isConnected: false,
   isConnecting: false,
   user: {

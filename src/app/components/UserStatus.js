@@ -11,7 +11,7 @@ import Button from 'material-ui/Button';
 import { login, logout } from '../actions/session';
 import MenuProfile from './MenuProfile';
 
-const Login = ({ onLogin }) => (
+export const Login = ({ onLogin }) => (
   <Button onClick={onLogin}>
     <FormattedMessage id="components.header.buttons.login" />
   </Button>
@@ -21,8 +21,8 @@ Login.propTypes = {
   onLogin: PropTypes.func.isRequired
 };
 
-const User = ({ user, onLogout }) => (
-  <MenuProfile name={user.name} pictureUrl={user.picture} onLogout={onLogout} />
+export const User = ({ user, onLogout }) => (
+  <MenuProfile name={user.name} picture={user.picture} onLogout={onLogout} />
 );
 
 User.propTypes = {
