@@ -13,8 +13,6 @@ import { selectLanguage } from '../../actions/translation';
 
 import IconButton from 'material-ui/IconButton';
 
-//TODO: Fix skipped test when enzyme add support of Portal: https://github.com/airbnb/enzyme/issues/1150
-
 describe('LanguageSelector Component', () => {
   it('renders without crashing', () => {
     const div = document.createElement('div');
@@ -26,6 +24,7 @@ describe('LanguageSelector Component', () => {
     );
   });
 
+  //TODO: Fix test when enzyme add support of Portal: https://github.com/airbnb/enzyme/issues/1150
   it.skip('calls onSelectLanguage when a language is selected', () => {
     const onSelectLanguage = jest.fn();
 
@@ -55,12 +54,14 @@ describe('LanguageSelector Container', () => {
     }
   });
 
-  const languageSelector = mount(
+  const root = mount(
     createConnectedComponent(
       createComponentWithIntl(<LanguageSelectorContainer />),
       { store: mockStore }
     )
   );
+
+  const languageSelector = root.find(LanguageSelector);
 
   it('renders without crashing', () => {
     const div = document.createElement('div');
@@ -73,19 +74,14 @@ describe('LanguageSelector Container', () => {
     );
   });
 
-  it.skip('uses the selectedLanguage from the store', () => {
-    languageSelector.find(IconButton).simulate('click');
-
-    const frOption = languageSelector.find({ key: 'fr' });
-    expect(frOption.props().selected).toBeTruthy();
+  it('uses the selectedLanguage from the store', () => {
+    expect(languageSelector.prop('selectedLanguage')).toEqual('fr');
   });
 
-  it.skip('dispatch a selectLanguage action when the language is changed', () => {
+  it('dispatches a selectLanguage action when the language is changed', () => {
     const expectedActions = [selectLanguage('en')];
 
-    languageSelector.find(IconButton).simulate('click');
-
-    languageSelector.find({ key: 'en' }).simulate('click');
+    languageSelector.prop('onSelectLanguage')('en');
 
     expect(mockStore.getActions()).toEqual(expectedActions);
   });
