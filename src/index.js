@@ -10,9 +10,9 @@ import registerServiceWorker from './registerServiceWorker';
 
 // App imports
 import App from './app/App';
+import './index.css';
 
 addLocaleData([...en, ...fr]);
+registerServiceWorker();
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
-registerServiceWorker();

@@ -3,11 +3,12 @@ export default {
   'components.header.buttons.login': 'Log in',
   'components.header.buttons.signup': 'Sign up',
 
-  'components.search-form.buttons.submit': "Let's go!",
-  'components.search-form.from.label': 'I want to ship from:',
-  'components.search-form.from.placeholder': 'Enter city to ship from',
-  'components.search-form.to.label': 'to:',
-  'components.search-form.to.placeholder': 'Enter city to ship to',
+  'components.search-form.from.label': 'Wherefrom ?',
+  'components.search-form.from.placeholder': 'Enter city or country',
+  'components.search-form.to.label': 'Whereto ?',
+  'components.search-form.to.placeholder': 'Enter city or country',
+
+  'components.language-selector.label': 'Change language',
 
   'languages.en': 'English',
   'languages.fr': 'French',
