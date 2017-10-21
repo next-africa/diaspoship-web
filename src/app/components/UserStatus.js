@@ -33,7 +33,7 @@ User.propTypes = {
   onLogout: PropTypes.func.isRequired
 };
 
-const LoginComponent = ({
+export const LoginComponent = ({
   isConnected,
   isConnecting,
   user,
