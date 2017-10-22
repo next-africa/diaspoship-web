@@ -6,18 +6,16 @@ import createComponentWithIntl from '../../../test-util/create-component-with-in
 import createConnectedComponent from '../../../test-util/create-connected-component';
 import UserStatus, { User, LoginComponent } from '../UserStatus';
 import Login from '../Login';
-import configureStore from 'redux-mock-store';
-import { logout, login } from '../../actions/session';
+import { userIsConnecting } from '../../actions/session';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
 describe('UserStatus container', () => {
   let mockStore;
   let root;
   let loginComponent;
   beforeEach(() => {
-    mockStore = configureStore(middlewares)({
+    mockStore = configureMockStore(middlewares)({
       session: {
         isConnected: true,
         isConnecting: false,
@@ -68,7 +66,7 @@ describe('UserStatus container', () => {
       login: jest.fn()
     };
     loginComponent.prop('onLogin')();
-    expectedActions = [userIsConnecting(true)];
+    const expectedActions = [userIsConnecting(true)];
     expect(mockStore.getActions()).toEqual(expectedActions);
   });
 });
