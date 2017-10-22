@@ -12,7 +12,6 @@ export default handleActions(
   {
     [selectLanguage]: (state, { payload }) => {
       const languageToSelect = payload.toLowerCase();
-
       if (!AVAILABLE_LANGUAGES[languageToSelect]) {
         return state;
       }

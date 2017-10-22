@@ -16,6 +16,7 @@
     "react-scripts": "1.0.13",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
+    "redux-thunk": "^2.2.0",
     "source-map-explorer": "^1.4.0",
     "styled-components": "^2.1.2"
   },
@@ -29,6 +30,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test-coverage": "react-scripts test --env=jsdom --coverage",
     "ci-test": "CI=true react-scripts test --env=jsdom --coverage --collectCoverageFrom=**/app/**/*.{js,jsx} && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
@@ -44,6 +46,7 @@
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "husky": "^0.14.3",
+    "jest-cli": "^21.2.1",
     "lint-staged": "^4.2.1",
     "prettier": "^1.7.0",
     "react-test-renderer": "^16.0.0",

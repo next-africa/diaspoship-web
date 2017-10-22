@@ -2,18 +2,18 @@
 import React from 'react';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import { IntlProvider } from 'react-intl';
-import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
-
 //App imports
 import Header from './components/Header';
-import Slider from './components/Home';
+import Home from './components/Home';
 import HelmetIntl from './components/HelmetIntl';
-import diasposhipApp from './reducers';
 import { selectLanguage } from './actions/translation';
+import configureStore from './store/configureStore';
+import { initializeFacebookSDK } from './actions/session';
 
-let store = createStore(diasposhipApp);
+const store = configureStore();
 store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
+store.dispatch(initializeFacebookSDK());
 
 const AppBody = ({ selectedLanguage, selectedTranslations }) => (
   <IntlProvider locale={selectedLanguage} messages={selectedTranslations}>
@@ -21,7 +21,7 @@ const AppBody = ({ selectedLanguage, selectedTranslations }) => (
       <div>
         <HelmetIntl messageId="pages.home.title" />
         <Header />
-        <Slider />
+        <Home />
       </div>
     </BrowserRouter>
   </IntlProvider>
