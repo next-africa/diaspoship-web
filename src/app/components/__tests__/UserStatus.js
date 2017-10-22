@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
 import '../../../test-util/enzyme-configuration';
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
 import createConnectedComponent from '../../../test-util/create-connected-component';
-import UserStatus from '../UserStatus';
-import { Login, User, LoginComponent } from '../UserStatus';
-
-jest.mock('../MenuProfile', () => 'MenuProfile');
+import { User, LoginComponent } from '../UserStatus';
+import Login from '../Login';
 
 describe('Login', () => {
   it('should render correctly', () => {

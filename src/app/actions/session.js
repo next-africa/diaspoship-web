@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import { FB_APP_ID } from '../../config/environment';
+
 export const resetUser = createAction('LOGOUT_USER');
 export const isUserConnected = createAction('IS_USER_CONNECTED');
 export const userIsConnecting = createAction('USER_IS_CONNECTING');
@@ -25,40 +26,44 @@ export function logout() {
   };
 }
 
+const loadUserInfosFn = dispatch => {
+  window.FB.api('/me', { fields: 'id, name, email, picture' }, function(
+    response
+  ) {
+    if (response && !response.error) {
+      const { id, email, name, picture } = response;
+      dispatch(
+        setUser({
+          id,
+          email,
+          name: name.split(' ')[0],
+          picture: picture.data.url
+        })
+      );
+    }
+    dispatch(userIsConnecting(false));
+  });
+};
+
 export function loadUserInfos() {
-  return dispatch => {
-    window.FB.api('/me', { fields: 'id, name, email, picture' }, function(
-      response
-    ) {
-      if (response && !response.error) {
-        const { id, email, name, picture } = response;
-        dispatch(
-          setUser({
-            id,
-            email,
-            name: name.split(' ')[0],
-            picture: picture.data.url
-          })
-        );
-      }
-      dispatch(userIsConnecting(false));
-    });
-  };
+  return loadUserInfosFn;
 }
 
 export function updateUserLoginStatus() {
-  return dispatch => {
-    dispatch(userIsConnecting(true));
-    window.FB.getLoginStatus(function(response) {
-      if (response && response.status === 'connected') {
-        dispatch(loadUserInfos());
-      } else {
-        dispatch(userIsConnecting(false));
-        dispatch(resetUser());
-      }
-    });
-  };
+  return updateUserLoginStatusFn;
 }
+
+const updateUserLoginStatusFn = dispatch => {
+  dispatch(userIsConnecting(true));
+  window.FB.getLoginStatus(function(response) {
+    if (response && response.status === 'connected') {
+      dispatch(loadUserInfos());
+    } else {
+      dispatch(userIsConnecting(false));
+      dispatch(resetUser());
+    }
+  });
+};
 
 export function initializeFacebookSDK() {
   return dispatch => {

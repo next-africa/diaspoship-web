@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl';
 import { connect, Provider } from 'react-redux';
 //App imports
 import Header from './components/Header';
-import Slider from './components/Home';
+import Home from './components/Home';
 import HelmetIntl from './components/HelmetIntl';
 import { selectLanguage } from './actions/translation';
 import configureStore from './store/configureStore';
@@ -21,7 +21,7 @@ const AppBody = ({ selectedLanguage, selectedTranslations }) => (
       <div>
         <HelmetIntl messageId="pages.home.title" />
         <Header />
-        <Slider />
+        <Home />
       </div>
     </BrowserRouter>
   </IntlProvider>

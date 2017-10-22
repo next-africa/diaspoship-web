@@ -1,25 +1,12 @@
 //React
 import React from 'react';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import PropTypes from 'proptypes';
-
-// Material Ui
-import Button from 'material-ui/Button';
 
 //App Import
 import { login, logout } from '../actions/session';
 import MenuProfile from './MenuProfile';
-
-export const Login = ({ onLogin }) => (
-  <Button onClick={onLogin}>
-    <FormattedMessage id="components.header.buttons.login" />
-  </Button>
-);
-
-Login.propTypes = {
-  onLogin: PropTypes.func.isRequired
-};
+import Login from './Login';
 
 export const User = ({ user, onLogout }) => (
   <MenuProfile name={user.name} picture={user.picture} onLogout={onLogout} />

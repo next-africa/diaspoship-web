@@ -2,6 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { intlShape } from 'react-intl';
 
 //Material UI
 import { withStyles } from 'material-ui/styles';
@@ -15,7 +16,8 @@ const styles = theme => ({
     marginBottom: theme.spacing.unit * 4
   },
   typography: {
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing.unit * 2,
+    color: 'white'
   }
 });
 
@@ -62,7 +64,6 @@ class MenuProfile extends React.Component {
             {this.props.name}
           </Typography>
         </Button>
-
         <Popover
           open={open}
           anchorEl={anchorEl}
@@ -89,6 +90,9 @@ class MenuProfile extends React.Component {
 
 MenuProfile.propTypes = {
   classes: PropTypes.object.isRequired
+};
+MenuProfile.contextTypes = {
+  intl: intlShape.isRequired
 };
 
 export default withStyles(styles)(MenuProfile);
