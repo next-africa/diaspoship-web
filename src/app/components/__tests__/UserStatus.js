@@ -6,7 +6,7 @@ import createComponentWithIntl from '../../../test-util/create-component-with-in
 import createConnectedComponent from '../../../test-util/create-connected-component';
 import UserStatus, { User, LoginComponent } from '../UserStatus';
 import Login from '../Login';
-import { userIsConnecting } from '../../actions/session';
+import { userIsConnecting, resetUser } from '../../actions/session';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 const middlewares = [thunk];
@@ -58,15 +58,21 @@ describe('UserStatus container', () => {
   });
 
   it('should dispatch login action when onLogin is called', () => {
-    let response = {
-      error: false
-    };
     mockStore.dispatch = jest.fn();
     global.window.FB = {
       login: jest.fn()
     };
     loginComponent.prop('onLogin')();
     const expectedActions = [userIsConnecting(true)];
+    expect(mockStore.getActions()).toEqual(expectedActions);
+  });
+  it('should dispatch logout action when onLogout is called', () => {
+    mockStore.dispatch = jest.fn();
+    global.window.FB = {
+      logout: jest.fn()
+    };
+    loginComponent.prop('onLogout')();
+    const expectedActions = [resetUser()];
     expect(mockStore.getActions()).toEqual(expectedActions);
   });
 });
