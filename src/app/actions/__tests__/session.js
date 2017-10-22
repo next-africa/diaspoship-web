@@ -13,7 +13,6 @@ import {
   loadUserInfos
 } from '../../actions/session';
 import { INITIAL_STATE } from '../session';
-import Login from '../../components/Login';
 
 describe('session actions', () => {
   let store;
@@ -147,7 +146,6 @@ describe('session actions', () => {
     const expectedActions = [{ payload: true, type: 'USER_IS_CONNECTING' }];
 
     store.dispatch(updateUserLoginStatus());
-    console.log('storee', store.getState());
     expect(store.getActions()).toEqual(expectedActions);
   });
 });

@@ -65,29 +65,31 @@ const updateUserLoginStatusFn = dispatch => {
   });
 };
 
-export function initializeFacebookSDK() {
-  return dispatch => {
-    window.fbAsyncInit = function() {
-      window.FB.init({
-        appId: FB_APP_ID,
-        cookie: true,
-        autoLoad: true,
-        xfbml: true,
-        version: 'v2.10'
-      });
+const initializeFacebookSDKFn = dispatch => {
+  window.fbAsyncInit = function() {
+    window.FB.init({
+      appId: FB_APP_ID,
+      cookie: true,
+      autoLoad: true,
+      xfbml: true,
+      version: 'v2.10'
+    });
 
-      dispatch(updateUserLoginStatus());
-    };
-
-    // Load the SDK asynchronously
-    (function(d, s, id) {
-      let js,
-        fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id) || !fjs) return;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = '//connect.facebook.net/en_US/sdk.js';
-      fjs.parentNode.insertBefore(js, fjs);
-    })(document, 'script', 'facebook-jssdk');
+    dispatch(updateUserLoginStatus());
   };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    let js,
+      fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id) || !fjs) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = '//connect.facebook.net/en_US/sdk.js';
+    fjs.parentNode.insertBefore(js, fjs);
+  })(document, 'script', 'facebook-jssdk');
+};
+
+export function initializeFacebookSDK() {
+  return initializeFacebookSDKFn;
 }

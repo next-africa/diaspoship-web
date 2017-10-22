@@ -23,19 +23,22 @@ export const INITIAL_STATE = {
 export default handleActions(
   {
     [isUserConnected]: (state, { payload }) => {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isConnected: payload
-      });
+      };
     },
     [userIsConnecting]: (state, { payload }) => {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isConnecting: payload
-      });
+      };
     },
     [setUser]: (state, { payload }) => {
-      return Object.assign({}, state, {
+      return {
+        ...state,
         user: payload
-      });
+      };
     },
     [resetUser]: () => INITIAL_STATE
   },
