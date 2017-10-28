@@ -4,6 +4,7 @@ import PropTypes from 'proptypes';
 import { intlShape } from 'react-intl';
 import Rater from 'react-rater';
 import 'react-rater/lib/react-rater.css';
+import moment from 'moment';
 // Material-uI
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -22,37 +23,16 @@ const styles = theme => ({
   },
   paper: {
     padding: 16,
-    textAlign: 'center',
+    textAlign: 'left',
     color: theme.palette.text.secondary
   },
   left: {
     float: 'left'
   }
 });
-export const Today = ({ formatMessage }) => {
-  const translation = {
-    monthsString: formatMessage({ id: 'app.calendar.months' }),
-    daysString: formatMessage({ id: 'app.calendar.days' })
-  };
-  let today = new Date();
-  var months = translation.monthsString.split(',');
-  var days = translation.daysString.split(',');
-  let day = days[today.getDay()];
-  let dd = today.getDate();
-  let mm = months[today.getMonth()];
-  let yyyy = today.getFullYear();
-  if (dd < 10) {
-    dd = '0' + dd;
-  }
-
-  if (mm < 10) {
-    mm = '0' + mm;
-  }
-  today = day + ' ' + dd + ' ' + mm + ' ' + yyyy;
-  return <span>{today}</span>;
+export const DepartureDate = ({ date }) => {
+  return <span>{moment(date).format('MMMM Do YYYY')}</span>;
 };
-const From = ({ locationFrom }) => <span> {locationFrom} </span>;
-const To = ({ locationTo }) => <span> {locationTo} </span>;
 const AvailableKilo = ({ kilo }) => <span> {kilo}</span>;
 const MeetingPlace = ({ address, formatMessage }) => {
   const meetingPlace = formatMessage({ id: 'app.offer.detail.meetingPlace' });
@@ -70,7 +50,7 @@ class Offer extends React.Component {
     const formatMessage = this.context.intl.formatMessage;
     const translation = {
       details: formatMessage({ id: 'app.offer.detail.title' }),
-      FBnbFriends: formatMessage({ id: 'app.offer.FB.nbFriend' }),
+      FBnbFriends: formatMessage({ id: 'app.offer.FB.numberOfFriends' }),
       btnContact: formatMessage({ id: 'app.offer.detail.button.contact' })
     };
     return (
@@ -111,7 +91,7 @@ class Offer extends React.Component {
                 </Paper>
                 <Grid item xs={3} className={classes.paper}>
                   <Typography className={classes.left}>
-                    <Today formatMessage={formatMessage} />
+                    <DepartureDate date={this.props.offer.date} />
                   </Typography>
                 </Grid>
                 <Grid item xs={2} className={classes.demo}>
@@ -121,13 +101,13 @@ class Offer extends React.Component {
                 </Grid>
                 <Grid item xs={3} className={classes.demo}>
                   <Typography className={classes.left}>
-                    <From locationFrom={this.props.offer.locationFrom} />
+                    <span> {this.props.offer.locationFrom} </span>
                   </Typography>
                   <Typography className={classes.left}>
                     <KeyboardArrowRightIcon />
                   </Typography>
                   <Typography className={classes.left}>
-                    <To locationTo={this.props.offer.locationTo} />
+                    <span>{this.props.offer.locationTo}</span>
                   </Typography>
                 </Grid>
               </Grid>
@@ -147,7 +127,8 @@ Offer.propTypes = {
   offer: PropTypes.shape({
     locationFrom: PropTypes.string.isRequired,
     locationTo: PropTypes.string.isRequired,
-    kilo: PropTypes.string.isRequired
+    kilo: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired
   })
 };
 

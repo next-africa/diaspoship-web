@@ -1,11 +1,6 @@
 export default {
-  'app.calendar.months':
-    'Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec',
-  'app.calendar.days':
-    'Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday',
-
   'app.offer.detail.title': 'Offer details',
-  'app.offer.FB.nbFriend': 'Facebook mutual friends',
+  'app.offer.FB.numberOfFriends': 'Facebook mutual friends',
   'app.offer.detail.meetingPlace': 'Place of meeting',
   'app.offer.detail.button.contact': 'Contact the traveler',
 

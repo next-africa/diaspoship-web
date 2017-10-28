@@ -6,7 +6,8 @@ const offer = {
   locationFrom: 'Quebec',
   locationTo: 'Montreal',
   kilo: '5 kg',
-  address: '2325 rue de la vie ètudiante'
+  address: '2325 rue de la vie ètudiante',
+  date: '20171128'
 };
 const OfferView = () => <Offer offer={offer} />;
 export default OfferView;

@@ -1,11 +1,6 @@
 export default {
-  'app.calendar.months':
-    'janv, févr, mars, avril, mai, juin, juil, août, sept, oct, nov, déc',
-  'app.calendar.days':
-    'Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi',
-
   'app.offer.detail.title': "détails de l'offre",
-  'app.offer.FB.nbFriend': 'Ami(e)s Facebook en commun',
+  'app.offer.FB.numberOfFriends': 'Ami(e)s Facebook en commun',
   'app.offer.detail.meetingPlace': 'Lieu de rencontre',
   'app.offer.detail.button.contact': 'Contacter le voyageur',
 
