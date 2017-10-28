@@ -1,4 +1,14 @@
 export default {
+  'app.calendar.months':
+    'Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec',
+  'app.calendar.days':
+    'Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday',
+
+  'app.offer.detail.title': 'Offer details',
+  'app.offer.FB.nbFriend': 'Facebook friends',
+  'app.offer.detail.meetingPlace': 'Place of meeting',
+  'app.offer.detail.button.contact': 'Contact the traveler',
+
   'components.header.buttons.help': 'How does it work?',
   'components.header.buttons.login': 'Log in',
   'components.header.buttons.logout': 'Log out',

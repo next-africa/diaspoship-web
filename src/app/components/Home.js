@@ -26,7 +26,7 @@ const styles = theme => ({
 
 const Home = function({ classes }) {
   return (
-    <div className={classes.root}>
+    <div>
       <div className={classes.marketingMessage}>
         <FormattedMessage id="pages.home.why-prompt" />
       </div>
