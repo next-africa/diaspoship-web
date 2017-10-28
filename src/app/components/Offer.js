@@ -111,17 +111,17 @@ class Offer extends React.Component {
                     <Rater total={5} rating={3} />
                   </Typography>
                   <Typography>0 {translation.FBnbFriends}</Typography>
-                  <Typography className={classes.left}>
+                  <Typography>
                     <AvailableKilo kilo={this.props.offer.kilo} />
                   </Typography>
                 </Grid>
                 <Grid item xs={4} className={classes.grid}>
-                  <Typography className={classes.left}>
+                  <Typography>
                     <DepartureDate date={this.props.offer.date} />
                   </Typography>
                 </Grid>
                 <Grid item xs={1} className={classes.grid}>
-                  <Typography className={classes.left}>
+                  <Typography>
                     <FlightTakeOff />
                   </Typography>
                 </Grid>
