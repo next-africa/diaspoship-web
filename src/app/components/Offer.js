@@ -147,8 +147,7 @@ Offer.propTypes = {
   offer: PropTypes.shape({
     locationFrom: PropTypes.string.isRequired,
     locationTo: PropTypes.string.isRequired,
-    kilo: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired
+    kilo: PropTypes.string.isRequired
   })
 };
 
