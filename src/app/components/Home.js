@@ -6,10 +6,11 @@ import { FormattedMessage } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
 //App Imports
 import SearchForm from './SearchForm';
+import OfferList from './OfferList';
 
 const styles = theme => ({
   root: {
-    padding: '80px 5px 0',
+    padding: '80px 2% 0',
     margin: '0 auto',
     maxWidth: '1140px'
   },
@@ -21,6 +22,10 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
+  },
+
+  offerList: {
+    marginTop: '20px'
   }
 });
 
@@ -31,6 +36,7 @@ const Home = function({ classes }) {
         <FormattedMessage id="pages.home.why-prompt" />
       </div>
       <SearchForm />
+      <OfferList className={classes.offerList} />
     </div>
   );
 };
