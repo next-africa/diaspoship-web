@@ -1,7 +1,7 @@
 // React
 import React from 'react';
 import PropTypes from 'proptypes';
-import { intlShape, injectIntl } from 'react-intl';
+import { intlShape } from 'react-intl';
 import Rater from 'react-rater';
 import 'react-rater/lib/react-rater.css';
 // Material-uI
