@@ -9,7 +9,7 @@ import moment from 'moment';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
+import ArrowForwardIcon from 'material-ui-icons/ArrowForward';
 import FlightTakeOff from 'material-ui-icons/FlightTakeoff';
 import Grid from 'material-ui/Grid';
 import List, { ListItem } from 'material-ui/List';
@@ -26,8 +26,33 @@ const styles = theme => ({
     textAlign: 'left',
     color: theme.palette.text.secondary
   },
+  right: {
+    float: 'right'
+  },
   left: {
     float: 'left'
+  },
+  button: {
+    margin: theme.spacing.unit
+  },
+  grid: {
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '50%',
+      flexBasis: '50%'
+    }
+  },
+  noDisplayInMobile: {
+    maxWidth: '30%',
+    flexBasis: '30%',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
+  displayInMobile: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'inline-flex'
+    }
   }
 });
 export const DepartureDate = ({ date }) => {
@@ -55,8 +80,8 @@ class Offer extends React.Component {
     };
     return (
       <div className={classes.root}>
-        <Grid container spacing={24} justify="center">
-          <Grid item xs={4} className={classes.demo}>
+        <Grid container spacing={24} justify="space-between">
+          <Grid item xs={4} className={classes.noDisplayInMobile}>
             <Paper className={classes.paper} elevation={4}>
               <Typography type="headline" component="h3">
                 {translation.details}
@@ -69,18 +94,19 @@ class Offer extends React.Component {
                     address={this.props.offer.address}
                   />
                 </ListItem>
-                <ListItem />
               </List>
               <Divider />
-              <Typography type="headline" component="h3">
-                <Button>{translation.btnContact}</Button>
+              <Typography type="headline">
+                <Button raised color="primary" className={classes.button}>
+                  {translation.btnContact}
+                </Button>
               </Typography>
             </Paper>
           </Grid>
           <Grid item xs>
             <Paper className={classes.paper} elevation={4}>
               <Grid container spacing={24} justify="space-between">
-                <Paper className={classes.paper} elevation={0}>
+                <Grid item xs={4} className={classes.grid}>
                   <Typography type="headline" component="h3">
                     <Rater total={5} rating={3} />
                   </Typography>
@@ -88,27 +114,41 @@ class Offer extends React.Component {
                   <Typography className={classes.left}>
                     <AvailableKilo kilo={this.props.offer.kilo} />
                   </Typography>
-                </Paper>
-                <Grid item xs={3} className={classes.paper}>
+                </Grid>
+                <Grid item xs={4} className={classes.grid}>
                   <Typography className={classes.left}>
                     <DepartureDate date={this.props.offer.date} />
                   </Typography>
                 </Grid>
-                <Grid item xs={2} className={classes.demo}>
+                <Grid item xs={1} className={classes.grid}>
                   <Typography className={classes.left}>
                     <FlightTakeOff />
                   </Typography>
                 </Grid>
-                <Grid item xs={3} className={classes.demo}>
+                <Grid item xs className={classes.grid}>
                   <Typography className={classes.left}>
                     <span> {this.props.offer.locationFrom} </span>
                   </Typography>
                   <Typography className={classes.left}>
-                    <KeyboardArrowRightIcon />
+                    <ArrowForwardIcon />
                   </Typography>
                   <Typography className={classes.left}>
                     <span>{this.props.offer.locationTo}</span>
                   </Typography>
+                </Grid>
+              </Grid>
+              <Grid
+                container
+                spacing={24}
+                justify="center"
+                className={classes.displayInMobile}
+              >
+                <Grid item xs>
+                  <Paper elevation={0} className={classes.right}>
+                    <Button raised color="primary" className={classes.button}>
+                      {translation.btnContact}
+                    </Button>
+                  </Paper>
                 </Grid>
               </Grid>
             </Paper>
@@ -118,7 +158,6 @@ class Offer extends React.Component {
     );
   }
 }
-
 Offer.contextTypes = {
   intl: intlShape.isRequired
 };
