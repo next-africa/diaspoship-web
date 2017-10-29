@@ -5,11 +5,13 @@
   "dependencies": {
     "material-ui": "^1.0.0-beta.16",
     "material-ui-icons": "^1.0.0-beta.15",
+    "moment": "^2.19.1",
     "proptypes": "^1.1.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.2.0",
     "react-intl": "^2.4.0",
+    "react-rater": "^0.4.5",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
