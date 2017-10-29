@@ -6,6 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
 //App Imports
 import SearchForm from './SearchForm';
+import OfferList from './OfferList';
 
 const styles = theme => ({
   marketingMessage: {
@@ -15,6 +16,10 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
+  },
+
+  offerList: {
+    marginTop: '20px'
   }
 });
 
@@ -25,6 +30,7 @@ const Home = function({ classes }) {
         <FormattedMessage id="pages.home.why-prompt" />
       </div>
       <SearchForm />
+      <OfferList className={classes.offerList} />
     </div>
   );
 };

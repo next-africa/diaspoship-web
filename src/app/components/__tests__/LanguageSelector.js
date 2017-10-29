@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM, { findDOMNode } from 'react-dom';
+import ReactDOM from 'react-dom';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
 import '../../../test-util/enzyme-configuration';
