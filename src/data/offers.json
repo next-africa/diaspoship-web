@@ -1,0 +1,19 @@
+[
+  {
+    "from": "Québec",
+    "to": "Montréal",
+    "availableKg": "23",
+    "pricePerKg": "20",
+    "currencyUnit": "CAD",
+    "travelDate": "20180102",
+    "type": ["ALL"]
+  },
+  {
+    "from": "Québec",
+    "to": "Kinshasa",
+    "pricePerKg": "20",
+    "currencyUnit": "USD",
+    "travelDate": "20170301",
+    "type": ["DOCUMENT"]
+  }
+]
