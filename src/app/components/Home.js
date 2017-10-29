@@ -8,12 +8,6 @@ import { withStyles } from 'material-ui/styles';
 import SearchForm from './SearchForm';
 
 const styles = theme => ({
-  root: {
-    padding: '80px 5px 0',
-    margin: '0 auto',
-    maxWidth: '1140px'
-  },
-
   marketingMessage: {
     textAlign: 'center',
     margin: '50px 0',
@@ -26,7 +20,7 @@ const styles = theme => ({
 
 const Home = function({ classes }) {
   return (
-    <div className={classes.root}>
+    <div>
       <div className={classes.marketingMessage}>
         <FormattedMessage id="pages.home.why-prompt" />
       </div>

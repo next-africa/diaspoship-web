@@ -1,4 +1,9 @@
 export default {
+  'app.offer.detail.title': "détails de l'offre",
+  'app.offer.FB.numberOfFriends': 'Ami(e)s Facebook en commun',
+  'app.offer.detail.meetingPlace': 'Lieu de rencontre',
+  'app.offer.detail.button.contact': 'Contacter le voyageur',
+
   'components.header.buttons.help': 'Comment ça marche?',
   'components.header.buttons.login': 'Se connecter',
   'components.header.buttons.logout': 'se deconnecter',
