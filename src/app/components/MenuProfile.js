@@ -16,7 +16,7 @@ const styles = theme => ({
   button: {
     padding: '0px'
   },
-  displyaInMobile: {
+  nameLabelSmallScreen: {
     display: 'none',
     [theme.breakpoints.down('sm')]: {
       display: 'block',
@@ -24,7 +24,7 @@ const styles = theme => ({
       textAlign: 'center'
     }
   },
-  noDisplyaInMobile: {
+  nameLabelBigScreen: {
     display: 'inline-flex',
     margin: theme.spacing.unit / 2,
     color: 'white',
@@ -81,7 +81,7 @@ class MenuProfile extends React.Component {
             alt={this.props.name}
             src={this.props.picture}
           />
-          <Typography className={classes.noDisplyaInMobile}>
+          <Typography className={classes.nameLabelBigScreen}>
             {this.props.name}
           </Typography>
         </Button>
@@ -98,7 +98,7 @@ class MenuProfile extends React.Component {
             horizontal: transformOriginHorizontal
           }}
         >
-          <Typography className={classes.displyaInMobile}>
+          <Typography className={classes.nameLabelSmallScreen}>
             {this.props.name}
           </Typography>
           <Divider />
