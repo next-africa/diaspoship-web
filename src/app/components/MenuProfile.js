@@ -10,14 +10,31 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Popover from 'material-ui/Popover';
 import Avatar from 'material-ui/Avatar';
+import Divider from 'material-ui/Divider';
 
 const styles = theme => ({
   button: {
-    marginBottom: theme.spacing.unit * 4
+    padding: '0px'
   },
-  typography: {
-    margin: theme.spacing.unit * 2,
-    color: 'white'
+  nameLabelSmallScreen: {
+    display: 'none',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      margin: theme.spacing.unit / 2,
+      textAlign: 'center'
+    }
+  },
+  nameLabelBigScreen: {
+    display: 'inline-flex',
+    margin: theme.spacing.unit / 2,
+    color: 'white',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
+  },
+  avatar: {
+    width: '30px',
+    height: '30px'
   }
 });
 
@@ -58,9 +75,13 @@ class MenuProfile extends React.Component {
     } = this.state;
     return (
       <div>
-        <Button onClick={this.handleClickButton}>
-          <Avatar alt={this.props.name} src={this.props.picture} />
-          <Typography className={classes.typography}>
+        <Button className={classes.button} onClick={this.handleClickButton}>
+          <Avatar
+            className={classes.avatar}
+            alt={this.props.name}
+            src={this.props.picture}
+          />
+          <Typography className={classes.nameLabelBigScreen}>
             {this.props.name}
           </Typography>
         </Button>
@@ -77,7 +98,11 @@ class MenuProfile extends React.Component {
             horizontal: transformOriginHorizontal
           }}
         >
-          <Typography className={classes.typography}>
+          <Typography className={classes.nameLabelSmallScreen}>
+            {this.props.name}
+          </Typography>
+          <Divider />
+          <Typography>
             <Button onClick={this.props.onLogout}>
               <FormattedMessage id="components.header.buttons.logout" />
             </Button>
