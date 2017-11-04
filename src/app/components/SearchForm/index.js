@@ -40,6 +40,52 @@ const styles = theme => ({
 });
 
 class SearchForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.initializeAutocomplete = this.initializeAutocomplete.bind(this);
+  }
+
+  initializeAutocomplete(id) {
+    var element = document.getElementById(id);
+
+    if (element) {
+      var autocomplete = new window.google.maps.places.Autocomplete(element, {
+        types: ['geocode']
+      });
+      window.google.maps.event.addListener(
+        autocomplete,
+        'place_changed',
+        function() {
+          var place = autocomplete.getPlace();
+
+          console.log(place);
+
+          for (var i in place.address_components) {
+            var component = place.address_components[i];
+            for (var j in component.types) {
+              var type_element = document.getElementById(component.types[j]);
+              if (type_element) {
+                type_element.value = component.long_name;
+              }
+            }
+          }
+        }
+      );
+    }
+  }
+
+  componentDidMount() {
+    window.google.maps.event.addDomListener(
+      window,
+      'load',
+      function() {
+        this.initializeAutocomplete('origin-input');
+        this.initializeAutocomplete('destination-input');
+      }.bind(this)
+    );
+  }
+
   render() {
     const classes = this.props.classes;
 
