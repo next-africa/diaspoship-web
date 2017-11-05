@@ -59,8 +59,6 @@ class SearchForm extends React.Component {
         function() {
           var place = autocomplete.getPlace();
 
-          console.log(place);
-
           for (var i in place.address_components) {
             var component = place.address_components[i];
             for (var j in component.types) {
