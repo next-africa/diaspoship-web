@@ -14,11 +14,6 @@ describe('UserStatus container', () => {
   let mockStore;
   let root;
   let loginComponent;
-  let picture = {
-    data: {
-      url: 'the path'
-    }
-  };
   beforeEach(() => {
     mockStore = configureMockStore(middlewares)({
       session: {
@@ -28,7 +23,7 @@ describe('UserStatus container', () => {
           id: '3242342343532',
           email: 'test@gmail.com',
           name: 'toto',
-          picture: picture
+          picture: 'the path'
         }
       }
     });
@@ -52,18 +47,13 @@ describe('UserStatus container', () => {
   });
 
   it('get props from the store', () => {
-    const picture = {
-      data: {
-        url: 'the path'
-      }
-    };
     const verify =
       loginComponent.prop('isConnected') === true &&
       loginComponent.prop('isConnecting') == false &&
       loginComponent.prop('user').id === '3242342343532' &&
       loginComponent.prop('user').email === 'test@gmail.com' &&
       loginComponent.prop('user').name === 'toto' &&
-      loginComponent.prop('user').picture.data.url === picture.data.url;
+      loginComponent.prop('user').picture === 'the path';
     expect(verify).toEqual(true);
   });
 
@@ -95,13 +85,8 @@ describe('Login', () => {
 
 describe('User', () => {
   it('should render correctly', () => {
-    const picture = {
-      data: {
-        url: 'the path'
-      }
-    };
     const div = document.createElement('div');
-    const userInfos = { name: 'Patrice', picture: picture };
+    const userInfos = { name: 'Patrice', picture: 'the path' };
     const onSelectLanguage = jest.fn();
     ReactDOM.render(
       createComponentWithIntl(
@@ -114,13 +99,8 @@ describe('User', () => {
 
 describe('LoginComponent', () => {
   it('should render correctly', () => {
-    const picture = {
-      data: {
-        url: 'the path'
-      }
-    };
     const div = document.createElement('div');
-    const userInfos = { name: 'Patrice', picture: picture };
+    const userInfos = { name: 'Patrice', picture: 'the path' };
 
     ReactDOM.render(
       createComponentWithIntl(
@@ -150,12 +130,7 @@ describe('LoginComponent', () => {
     expect(loginComponent.contains(<p>Loading…</p>)).toBeTruthy();
   });
   it('should return the User component when isConnected', () => {
-    const picture = {
-      data: {
-        url: 'the path'
-      }
-    };
-    const userInfos = { name: 'Patrice', picture: picture };
+    const userInfos = { name: 'Patrice', picture: 'the path' };
 
     const loginComponent = mount(
       createComponentWithIntl(
@@ -175,12 +150,7 @@ describe('LoginComponent', () => {
     );
   });
   it('should return the Login component when isNotConnected', () => {
-    const picture = {
-      data: {
-        url: 'the path'
-      }
-    };
-    const userInfos = { name: 'Patrice', picture: picture };
+    const userInfos = { name: 'Patrice', picture: 'the path' };
 
     const loginComponent = mount(
       createComponentWithIntl(
