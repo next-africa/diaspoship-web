@@ -8,6 +8,7 @@ import {
   login,
   userIsConnecting,
   resetUser,
+  setUser,
   updateUserLoginStatus,
   initializeFacebookSDK,
   loadUserInfos
@@ -111,7 +112,7 @@ describe('session actions', () => {
     beforeEach(() => {
       global.window.FB.api = (
         me,
-        param = { fields: 'id, name, email, picture' },
+        param = { fields: 'id, name,first_name, email, picture' },
         callback
       ) => {
         callback(response);
@@ -120,7 +121,7 @@ describe('session actions', () => {
     it('should dispatch setUser and userIsConnecting(false) if there is no  error', () => {
       store.dispatch(loadUserInfos());
       expect(store.getActions()).toEqual([
-        resetUser(),
+        setUser({ INITIAL_STATE }),
         userIsConnecting(false)
       ]);
     });

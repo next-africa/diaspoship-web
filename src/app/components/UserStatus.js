@@ -9,7 +9,11 @@ import MenuProfile from './MenuProfile';
 import Login from './Login';
 
 export const User = ({ user, onLogout }) => (
-  <MenuProfile name={user.name} picture={user.picture} onLogout={onLogout} />
+  <MenuProfile
+    name={user.first_name}
+    picture={user.picture.data.url}
+    onLogout={onLogout}
+  />
 );
 
 User.propTypes = {

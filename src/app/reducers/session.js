@@ -16,6 +16,7 @@ export const INITIAL_STATE = {
     id: null,
     email: null,
     name: null,
+    first_name: null,
     picture: null
   }
 };
