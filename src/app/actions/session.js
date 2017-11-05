@@ -38,8 +38,8 @@ const loadUserInfosFn = dispatch => {
             id,
             email,
             name,
-            first_name,
-            picture
+            firstName: first_name,
+            picture: picture.data.url
           })
         );
       }

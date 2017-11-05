@@ -12,8 +12,8 @@ import {
   updateUserLoginStatus,
   initializeFacebookSDK,
   loadUserInfos
-} from '../../actions/session';
-import { INITIAL_STATE } from '../session';
+} from '../session';
+import { INITIAL_STATE } from '../../reducers/session';
 
 describe('session actions', () => {
   let store;
@@ -106,8 +106,21 @@ describe('session actions', () => {
   });
 
   describe('load User Infos', () => {
+    let { id, email, name, first_name, picture } = INITIAL_STATE;
+    let User = {
+      id: id,
+      email: email,
+      name: name,
+      first_name: first_name,
+      picture
+    };
     let response = {
-      error: false
+      error: false,
+      picture: {
+        data: {
+          url: picture
+        }
+      }
     };
     beforeEach(() => {
       global.window.FB.api = (
@@ -121,7 +134,7 @@ describe('session actions', () => {
     it('should dispatch setUser and userIsConnecting(false) if there is no  error', () => {
       store.dispatch(loadUserInfos());
       expect(store.getActions()).toEqual([
-        setUser({ INITIAL_STATE }),
+        setUser(User),
         userIsConnecting(false)
       ]);
     });

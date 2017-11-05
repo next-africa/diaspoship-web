@@ -10,8 +10,8 @@ import Login from './Login';
 
 export const User = ({ user, onLogout }) => (
   <MenuProfile
-    name={user.first_name}
-    picture={user.picture.data.url}
+    name={user.firstName}
+    picture={user.picture}
     onLogout={onLogout}
   />
 );
