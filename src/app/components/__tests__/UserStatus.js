@@ -63,7 +63,7 @@ describe('UserStatus container', () => {
       loginComponent.prop('user').id === '3242342343532' &&
       loginComponent.prop('user').email === 'test@gmail.com' &&
       loginComponent.prop('user').name === 'toto' &&
-      loginComponent.prop('user').picture.data.url == picture.data.url;
+      loginComponent.prop('user').picture.data.url === picture.data.url;
     expect(verify).toEqual(true);
   });
 
