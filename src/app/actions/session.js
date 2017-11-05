@@ -27,22 +27,25 @@ export function logout() {
 }
 
 const loadUserInfosFn = dispatch => {
-  window.FB.api('/me', { fields: 'id, name, email, picture' }, function(
-    response
-  ) {
-    if (response && !response.error) {
-      const { id, email, name, picture } = response;
-      dispatch(
-        setUser({
-          id,
-          email,
-          name: name.split(' ')[0],
-          picture: picture.data.url
-        })
-      );
+  window.FB.api(
+    '/me',
+    { fields: 'id, name, first_name, last_name, email, picture' },
+    function(response) {
+      if (response && !response.error) {
+        const { id, email, name, first_name, picture } = response;
+        dispatch(
+          setUser({
+            id,
+            email,
+            name,
+            first_name,
+            picture
+          })
+        );
+      }
+      dispatch(userIsConnecting(false));
     }
-    dispatch(userIsConnecting(false));
-  });
+  );
 };
 
 export function loadUserInfos() {
