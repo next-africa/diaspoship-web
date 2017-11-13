@@ -34,7 +34,7 @@ const AppBody = ({ selectedLanguage, selectedTranslations, classes }) => (
         <Header />
         <div className={classes.root}>
           <Route exact={true} path="/" component={Home} />
-          <Route path="/offer" component={OfferView} />
+          <Route path="/offer/:offerID" component={OfferView} />
         </div>
       </div>
     </Router>
