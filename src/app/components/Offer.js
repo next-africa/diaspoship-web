@@ -3,8 +3,10 @@ import React from 'react';
 import PropTypes from 'proptypes';
 import { intlShape } from 'react-intl';
 import Rater from 'react-rater';
+import { withRouter } from 'react-router';
 import 'react-rater/lib/react-rater.css';
 import moment from 'moment';
+import { connect } from 'react-redux';
 // Material-uI
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -16,6 +18,8 @@ import List, { ListItem } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 
+// App imports
+import { getOffer } from '../actions/offers';
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -55,113 +59,115 @@ const styles = theme => ({
     }
   }
 });
-export const DepartureDate = ({ date }) => {
-  return <span>{moment(date).format('MMMM Do YYYY')}</span>;
-};
-const AvailableKilo = ({ kilo }) => <span> {kilo}</span>;
-const MeetingPlace = ({ address, formatMessage }) => {
-  const meetingPlace = formatMessage({ id: 'app.offer.detail.meetingPlace' });
-  return (
-    <span>
-      {' '}
-      {meetingPlace}: {address}
-    </span>
-  );
-};
 
-class Offer extends React.Component {
+class OfferComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.offer = [];
+  }
+
+  componentWillMount() {
+    let id = parseInt(this.props.match.params.offerID);
+    this.props.onGetOffer(id);
+  }
+
   render() {
     const classes = this.props.classes;
     const formatMessage = this.context.intl.formatMessage;
     const translation = {
       details: formatMessage({ id: 'app.offer.detail.title' }),
       FBnbFriends: formatMessage({ id: 'app.offer.FB.numberOfFriends' }),
-      btnContact: formatMessage({ id: 'app.offer.detail.button.contact' })
+      btnContact: formatMessage({ id: 'app.offer.detail.button.contact' }),
+      meetingPlace: formatMessage({ id: 'app.offer.detail.meetingPlace' })
     };
-    return (
-      <div className={classes.root}>
-        <Grid container spacing={24} justify="space-between">
-          <Grid item xs={4} className={classes.noDisplayInMobile}>
-            <Paper className={classes.paper} elevation={4}>
-              <Typography type="headline" component="h3">
-                {translation.details}
-              </Typography>
-              <Divider />
-              <List>
-                <ListItem>
-                  <MeetingPlace
-                    formatMessage={formatMessage}
-                    address={this.props.offer.address}
-                  />
-                </ListItem>
-              </List>
-              <Divider />
-              <Typography type="headline">
-                <Button raised color="primary" className={classes.button}>
-                  {translation.btnContact}
-                </Button>
-              </Typography>
-            </Paper>
+
+    if (this.props.selectedOffer != null) {
+      this.offer = this.props.selectedOffer;
+      return (
+        <div className={classes.root}>
+          <Grid container spacing={24} justify="space-between">
+            <Grid item xs={4} className={classes.noDisplayInMobile}>
+              <Paper className={classes.paper} elevation={4}>
+                <Typography type="headline" component="h3">
+                  {translation.details}
+                </Typography>
+                <Divider />
+                <List>
+                  <ListItem>
+                    <span>
+                      {translation.meetingPlace}: {this.offer.address}
+                    </span>
+                  </ListItem>
+                </List>
+                <Divider />
+                <Typography type="headline">
+                  <Button raised color="primary" className={classes.button}>
+                    {translation.btnContact}
+                  </Button>
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs>
+              <Paper className={classes.paper} elevation={4}>
+                <Grid container spacing={24} justify="space-between">
+                  <Grid item xs={4} className={classes.grid}>
+                    <Typography type="headline" component="h3">
+                      <Rater total={5} rating={3} />
+                    </Typography>
+                    <Typography>0 {translation.FBnbFriends}</Typography>
+                    <Typography>{this.offer.kilo}</Typography>
+                  </Grid>
+                  <Grid item xs={4} className={classes.grid}>
+                    <Typography>
+                      {moment(this.offer.date).format('MMMM Do YYYY')}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={1} className={classes.grid}>
+                    <Typography>
+                      <FlightTakeOff />
+                    </Typography>
+                  </Grid>
+                  <Grid item xs className={classes.grid}>
+                    <Typography className={classes.left}>
+                      <span> {this.offer.locationFrom} </span>
+                    </Typography>
+                    <Typography className={classes.left}>
+                      <ArrowForwardIcon />
+                    </Typography>
+                    <Typography className={classes.left}>
+                      <span>{this.offer.locationTo}</span>
+                    </Typography>
+                  </Grid>
+                </Grid>
+                <Grid
+                  container
+                  spacing={24}
+                  justify="center"
+                  className={classes.displayInMobile}
+                >
+                  <Grid item xs>
+                    <Paper elevation={0} className={classes.right}>
+                      <Button raised color="primary" className={classes.button}>
+                        {translation.btnContact}
+                      </Button>
+                    </Paper>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item xs>
-            <Paper className={classes.paper} elevation={4}>
-              <Grid container spacing={24} justify="space-between">
-                <Grid item xs={4} className={classes.grid}>
-                  <Typography type="headline" component="h3">
-                    <Rater total={5} rating={3} />
-                  </Typography>
-                  <Typography>0 {translation.FBnbFriends}</Typography>
-                  <Typography>
-                    <AvailableKilo kilo={this.props.offer.kilo} />
-                  </Typography>
-                </Grid>
-                <Grid item xs={4} className={classes.grid}>
-                  <Typography>
-                    <DepartureDate date={this.props.offer.date} />
-                  </Typography>
-                </Grid>
-                <Grid item xs={1} className={classes.grid}>
-                  <Typography>
-                    <FlightTakeOff />
-                  </Typography>
-                </Grid>
-                <Grid item xs className={classes.grid}>
-                  <Typography className={classes.left}>
-                    <span> {this.props.offer.locationFrom} </span>
-                  </Typography>
-                  <Typography className={classes.left}>
-                    <ArrowForwardIcon />
-                  </Typography>
-                  <Typography className={classes.left}>
-                    <span>{this.props.offer.locationTo}</span>
-                  </Typography>
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                spacing={24}
-                justify="center"
-                className={classes.displayInMobile}
-              >
-                <Grid item xs>
-                  <Paper elevation={0} className={classes.right}>
-                    <Button raised color="primary" className={classes.button}>
-                      {translation.btnContact}
-                    </Button>
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Paper>
-          </Grid>
-        </Grid>
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return <span>Offer not Found</span>;
+    }
   }
 }
-Offer.contextTypes = {
+
+OfferComponent.contextTypes = {
   intl: intlShape.isRequired
 };
-Offer.propTypes = {
+OfferComponent.propTypes = {
   classes: PropTypes.object.isRequired,
   offer: PropTypes.shape({
     locationFrom: PropTypes.string.isRequired,
@@ -171,4 +177,18 @@ Offer.propTypes = {
   })
 };
 
-export default withStyles(styles)(Offer);
+const mapStateToProps = ({ offers: { selectedOffer } }) => ({
+  selectedOffer
+});
+const mapDispatchToProps = dispatch => {
+  return {
+    onGetOffer: id => dispatch(getOffer(id))
+  };
+};
+
+const Offer = withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(
+    withStyles(styles)(OfferComponent)
+  )
+);
+export default Offer;
