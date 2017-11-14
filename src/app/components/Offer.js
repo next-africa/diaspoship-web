@@ -60,10 +60,6 @@ const styles = theme => ({
   }
 });
 export class OfferComponent extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     let id = parseInt(this.props.match.params.offerID, 10);
     this.props.onGetOffer(id);

@@ -6,6 +6,5 @@ import offers from './offers';
 export default combineReducers({
   offers,
   session,
-  translation,
-  offers
+  translation
 });
