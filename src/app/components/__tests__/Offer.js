@@ -15,7 +15,7 @@ import Offer, { OfferComponent } from '../Offer';
 describe('Offer', () => {
   let mockStore;
   let root;
-  let offerComponent;
+  let TheOfferComponent;
   beforeEach(() => {
     mockStore = configureMockStore([])({
       offers: {
@@ -60,7 +60,7 @@ describe('Offer', () => {
       )
     );
 
-    offerComponent = root.find(OfferComponent);
+    TheOfferComponent = root.find(OfferComponent);
   });
   it('should render correctly', () => {
     const div = document.createElement('div');
