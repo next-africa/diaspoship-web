@@ -15,9 +15,9 @@ describe('offers reduicer', () => {
       id: 3,
       locationFrom: 'Senegal',
       locationTo: 'Kinshasa',
-      kilo: '5',
-      address: '2325 rue de la vie etudiante ',
-      date: '20170204'
+      kilo: '1 kg',
+      address: 'Pikine SEFA ',
+      date: '20170209'
     };
     expect(offers(undefined, getOffer(parload))).toEqual({
       ...INITIAL_STATE,
