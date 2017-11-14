@@ -59,15 +59,13 @@ const styles = theme => ({
     }
   }
 });
-
-class OfferComponent extends React.Component {
+export class OfferComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.offer = [];
   }
 
   componentWillMount() {
-    let id = parseInt(this.props.match.params.offerID);
+    let id = parseInt(this.props.match.params.offerID, 10);
     this.props.onGetOffer(id);
   }
 
