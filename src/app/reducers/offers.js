@@ -40,6 +40,7 @@ export default handleActions(
         if (offer.id === payload) {
           return offer;
         }
+        return 0;
       });
       return {
         ...state,
