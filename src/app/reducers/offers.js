@@ -9,7 +9,7 @@ export const INITIAL_STATE = {
       id: 1,
       locationFrom: 'Quebec',
       locationTo: 'Montreal',
-      kilo: '5',
+      kilo: '5 kg',
       address: '2325 rue de la vie etudiante ',
       date: '20170204'
     },
@@ -17,15 +17,15 @@ export const INITIAL_STATE = {
       id: 3,
       locationFrom: 'Senegal',
       locationTo: 'Kinshasa',
-      kilo: '5',
-      address: '2325 rue de la vie etudiante ',
-      date: '20170204'
+      kilo: '1 kg',
+      address: 'Pikine SEFA ',
+      date: '20170209'
     },
     {
       id: 4,
       locationFrom: 'Paris',
       locationTo: 'Montreal',
-      kilo: '5',
+      kilo: '3 kg',
       address: '2325 rue de la vie etudiante ',
       date: '20170204'
     }
