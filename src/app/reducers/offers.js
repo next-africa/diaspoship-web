@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions';
 
 import { getOffer } from '../actions/offers';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   offersList: [
     {
       id: 1,
