@@ -11,7 +11,7 @@ import HelmetIntl from './components/HelmetIntl';
 import { selectLanguage } from './actions/translation';
 import configureStore from './store/configureStore';
 import { initializeFacebookSDK } from './actions/session';
-import OfferView from './view/Offer';
+import Offer from './components/Offer';
 //Material UI
 import { withStyles } from 'material-ui/styles';
 
@@ -34,7 +34,7 @@ const AppBody = ({ selectedLanguage, selectedTranslations, classes }) => (
         <Header />
         <div className={classes.root}>
           <Route exact={true} path="/" component={Home} />
-          <Route path="/offer/:offerID" component={OfferView} />
+          <Route path="/offer/:offerID" component={Offer} />
         </div>
       </div>
     </Router>
