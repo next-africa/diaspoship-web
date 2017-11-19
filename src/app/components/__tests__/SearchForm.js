@@ -27,4 +27,16 @@ describe('SearchFrom', () => {
     const wrapperComp = shallow(<SearchForm />);
     expect(wrapperComp.find('#origin-input').length == 0).toEqual(true);
   });
+  it('calls componentDidMount', () => {
+    const Intl = jest.fn();
+    jest.spyOn(SearchForm.prototype, 'componentDidMount');
+    const wrapper = mount(<SearchForm intl={Intl} />);
+    expect(SearchForm.prototype.componentDidMount.calledOnce).to.equal(true);
+  });
+  it('should call initializeAutocomplete function when component is mount', () => {
+    const spy = jest.spyOn(SearchForm.prototype, 'initializeAutocomplete');
+    const wrapper = shallow(<SearchForm />);
+    wrapper.instance().initializeAutocomplete();
+    expect(spy).toHaveBeenCalled();
+  });
 });
