@@ -24,8 +24,7 @@ describe('LanguageSelector Component', () => {
     );
   });
 
-  //TODO: Fix test when enzyme add support of Portal: https://github.com/airbnb/enzyme/issues/1150
-  it.skip('calls onSelectLanguage when a language is selected', () => {
+  it('calls onSelectLanguage when a language is selected', () => {
     const onSelectLanguage = jest.fn();
 
     const languageSelector = mount(
@@ -39,7 +38,10 @@ describe('LanguageSelector Component', () => {
 
     languageSelector.find(IconButton).simulate('click');
 
-    languageSelector.find({ key: 'en' }).simulate('click');
+    languageSelector
+      .find('li')
+      .at(0)
+      .simulate('click');
 
     expect(onSelectLanguage.mock.calls.length).toBe(1);
 

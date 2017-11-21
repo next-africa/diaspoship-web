@@ -46,7 +46,7 @@
     "@storybook/react": "^3.2.8",
     "coveralls": "^2.13.1",
     "enzyme": "^3.0.0",
-    "enzyme-adapter-react-16": "^1.0.0",
+    "enzyme-adapter-react-16": "^1.1.0",
     "husky": "^0.14.3",
     "jest-cli": "^21.2.1",
     "lint-staged": "^4.2.1",
