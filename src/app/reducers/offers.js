@@ -1,52 +1,42 @@
-// Redux
+//Redux
 import { handleActions } from 'redux-actions';
 
-import { getOffer } from '../actions/offers';
+//App Imports
+import { fetchingOffers, receiveOffers, selectOffer } from '../actions/offers';
 
 export const INITIAL_STATE = {
-  offersList: [
-    {
-      id: 1,
-      locationFrom: 'Quebec',
-      locationTo: 'Montreal',
-      kilo: '5 kg',
-      address: '2325 rue de la vie etudiante ',
-      date: '20170204'
-    },
-    {
-      id: 3,
-      locationFrom: 'Senegal',
-      locationTo: 'Kinshasa',
-      kilo: '1 kg',
-      address: 'Pikine SEFA ',
-      date: '20170209'
-    },
-    {
-      id: 4,
-      locationFrom: 'Paris',
-      locationTo: 'Montreal',
-      kilo: '3 kg',
-      address: '2325 rue de la vie etudiante ',
-      date: '20170204'
-    }
-  ],
+  error: null,
+  isFetching: false,
+  offers: [],
+  filters: {
+    from: null,
+    to: null
+  },
   selectedOffer: null
 };
 
 export default handleActions(
   {
-    [getOffer]: (state, { payload }) => {
-      let offer = state.offersList.filter(offer => {
-        if (offer.id === payload) {
-          return offer;
-        }
-        return 0;
-      });
+    [selectOffer]: (state, { payload }) => {
+      let offer = state.offers.find(offer => offer.id === payload);
+
       return {
         ...state,
-        selectedOffer: offer[0]
+        selectedOffer: offer
       };
-    }
+    },
+
+    [fetchingOffers]: state => ({
+      ...state,
+      error: null,
+      isFetching: true
+    }),
+
+    [receiveOffers]: (state, { payload }) => ({
+      ...state,
+      isFetching: false,
+      offers: payload
+    })
   },
   INITIAL_STATE
 );

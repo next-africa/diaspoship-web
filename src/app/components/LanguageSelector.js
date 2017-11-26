@@ -21,7 +21,7 @@ const styles = theme => ({
   }
 });
 
-class LanguageSelectorComponent extends React.Component {
+class LanguageSelectorComponent extends React.PureComponent {
   state = {
     anchorEl: null,
     isOpen: false
@@ -108,8 +108,6 @@ const mapDispatchToProps = dispatch => ({
   onSelectLanguage: language => dispatch(selectLanguage(language))
 });
 
-const LanguageSelector = withStyles(styles)(LanguageSelectorComponent);
-
-export { LanguageSelector };
+export const LanguageSelector = withStyles(styles)(LanguageSelectorComponent);
 
 export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelector);

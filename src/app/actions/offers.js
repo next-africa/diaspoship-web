@@ -1,2 +1,13 @@
 import { createAction } from 'redux-actions';
-export const getOffer = createAction('GET_OFFER');
+import offers from '../../data/offers.json';
+
+export const selectOffer = createAction('SELECT_OFFER');
+export const receiveOffers = createAction('RECEIVE_OFFERS');
+export const fetchingOffers = createAction('FETCHING_OFFERS');
+
+const fetchOffersFn = dispatch => {
+  dispatch(fetchingOffers());
+  dispatch(receiveOffers(offers));
+};
+
+export const fetchOffers = () => fetchOffersFn;

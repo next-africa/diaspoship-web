@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.5",
-    "material-ui": "^1.0.0-beta.16",
-    "material-ui-icons": "^1.0.0-beta.15",
+    "material-ui": "^1.0.0-beta.17",
+    "material-ui-icons": "^1.0.0-beta.17",
     "moment": "^2.19.1",
     "proptypes": "^1.1.0",
     "react": "^16.0.0",

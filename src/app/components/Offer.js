@@ -19,7 +19,9 @@ import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 
 // App imports
-import { getOffer } from '../actions/offers';
+import { selectOffer } from '../actions/offers';
+import OfferType from '../types/offer';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -59,10 +61,11 @@ const styles = theme => ({
     }
   }
 });
+
 export class OfferComponent extends React.Component {
   componentWillMount() {
     let id = parseInt(this.props.match.params.offerID, 10);
-    this.props.onGetOffer(id);
+    this.props.onSelectOffer(id);
   }
 
   render() {
@@ -75,7 +78,7 @@ export class OfferComponent extends React.Component {
       meetingPlace: formatMessage({ id: 'app.offer.detail.meetingPlace' })
     };
 
-    if (this.props.selectedOffer != null) {
+    if (this.props.selectedOffer !== null) {
       this.offer = this.props.selectedOffer;
       return (
         <div className={classes.root}>
@@ -163,12 +166,7 @@ OfferComponent.contextTypes = {
 };
 OfferComponent.propTypes = {
   classes: PropTypes.object.isRequired,
-  offer: PropTypes.shape({
-    locationFrom: PropTypes.string.isRequired,
-    locationTo: PropTypes.string.isRequired,
-    kilo: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
-  })
+  offer: OfferType.isRequired
 };
 
 const mapStateToProps = ({ offers: { selectedOffer } }) => ({
@@ -176,7 +174,7 @@ const mapStateToProps = ({ offers: { selectedOffer } }) => ({
 });
 const mapDispatchToProps = dispatch => {
   return {
-    onGetOffer: id => dispatch(getOffer(id))
+    onSelectOffer: id => dispatch(selectOffer(id))
   };
 };
 

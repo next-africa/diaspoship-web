@@ -1,19 +1,24 @@
 [
   {
+    "id": "quebec-montreal-10",
     "from": "Québec",
     "to": "Montréal",
     "availableKg": "23",
     "pricePerKg": "20",
     "currencyUnit": "CAD",
-    "travelDate": "20180102",
+    "departureDate": "2018-01-02",
+    "arrivalDate": "2018-01-03",
     "type": ["ALL"]
   },
   {
+    "id": "quebec-kinshasa-10",
     "from": "Québec",
     "to": "Kinshasa",
+    "availableKg": "23",
     "pricePerKg": "20",
     "currencyUnit": "USD",
-    "travelDate": "20170301",
+    "departureDate": "2018-02-01",
+    "arrivalDate": "2018-02-02",
     "type": ["DOCUMENT"]
   }
 ]

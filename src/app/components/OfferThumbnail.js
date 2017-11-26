@@ -7,6 +7,8 @@ import { withStyles } from 'material-ui/styles';
 import TrainIcon from 'material-ui-icons/Train';
 import ArrowForward from 'material-ui-icons/ArrowForward';
 import classNames from 'classnames';
+//App
+import OfferType from '../types/offer';
 
 const styles = theme => ({
   root: {
@@ -55,30 +57,33 @@ const styles = theme => ({
   }
 });
 
-const OfferThumbnail = ({ classes, className }) => (
-  <Card className={classNames(classes.root, className)}>
+const OfferThumbnail = ({ offer, classes, className, ...props }) => (
+  <Card className={classNames(classes.root, className)} {...props}>
     <CardContent>
       <div className={classes.destinationRow}>
-        <span className={classes.from}> Québec </span>
+        <span className={classes.from}> {offer.from} </span>
         <ArrowForward />
-        <span className={classes.to}> Montréal </span>
+        <span className={classes.to}> {offer.to} </span>
       </div>
       <div className={classes.contentRow}>
-        <span className={classes.date}>23 Novembre 2017</span>
+        <span className={classes.date}>{offer.departureDate}</span>
         <TrainIcon />
-        <span className={classes.date}>23 Novembre 2017</span>
+        <span className={classes.date}>{offer.arrivalDate}</span>
       </div>
       <div className={classes.pricingRow}>
-        <span className={classes.pricingItem}>24 Kg</span>
+        <span className={classes.pricingItem}>{offer.availableKg}</span>
         <span className={classes.pricingItem}> à </span>
-        <span className={classes.priceItem}>25 USD/Kg</span>
+        <span className={classes.priceItem}>
+          {offer.pricePerKg} {offer.currencyUnit}/Kg
+        </span>
       </div>
     </CardContent>
   </Card>
 );
 
 OfferThumbnail.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  offer: OfferType
 };
 
 export default withStyles(styles)(OfferThumbnail);
