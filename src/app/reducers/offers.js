@@ -17,14 +17,10 @@ export const INITIAL_STATE = {
 
 export default handleActions(
   {
-    [selectOffer]: (state, { payload }) => {
-      let offer = state.offers.find(offer => offer.id === payload);
-
-      return {
-        ...state,
-        selectedOffer: offer
-      };
-    },
+    [selectOffer]: (state, { payload }) => ({
+      ...state,
+      selectedOffer: payload
+    }),
 
     [fetchingOffers]: state => ({
       ...state,

@@ -11,3 +11,10 @@ const fetchOffersFn = dispatch => {
 };
 
 export const fetchOffers = () => fetchOffersFn;
+
+export function fetchOffer(id) {
+  let offer = offers.find(offer => offer.id === id);
+  return dispatch => {
+    dispatch(selectOffer(offer));
+  };
+}

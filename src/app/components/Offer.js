@@ -19,7 +19,7 @@ import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 
 // App imports
-import { selectOffer } from '../actions/offers';
+import { fetchOffer } from '../actions/offers';
 import OfferType from '../types/offer';
 
 const styles = theme => ({
@@ -59,13 +59,29 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'inline-flex'
     }
+  },
+  pricingRow: {
+    extend: 'contentRow',
+    justifyContent: 'flex-end'
+  },
+
+  pricingItem: {
+    marginRight: '5px',
+    '&:last-child': {
+      marginRight: '0px'
+    }
+  },
+
+  priceItem: {
+    extend: 'pricingItem',
+    color: 'green'
   }
 });
 
 export class OfferComponent extends React.Component {
   componentWillMount() {
-    let id = parseInt(this.props.match.params.offerID, 10);
-    this.props.onSelectOffer(id);
+    let id = this.props.match.params.offerID;
+    this.props.fetchOffer(id);
   }
 
   render() {
@@ -78,8 +94,8 @@ export class OfferComponent extends React.Component {
       meetingPlace: formatMessage({ id: 'app.offer.detail.meetingPlace' })
     };
 
-    if (this.props.selectedOffer !== null) {
-      this.offer = this.props.selectedOffer;
+    if (this.props.offer !== null) {
+      let offer = this.props.offer;
       return (
         <div className={classes.root}>
           <Grid container spacing={24} justify="space-between">
@@ -92,7 +108,7 @@ export class OfferComponent extends React.Component {
                 <List>
                   <ListItem>
                     <span>
-                      {translation.meetingPlace}: {this.offer.address}
+                      {translation.meetingPlace}: {offer.from}
                     </span>
                   </ListItem>
                 </List>
@@ -112,11 +128,19 @@ export class OfferComponent extends React.Component {
                       <Rater total={5} rating={3} />
                     </Typography>
                     <Typography>0 {translation.FBnbFriends}</Typography>
-                    <Typography>{this.offer.kilo}</Typography>
+                    <div className={classes.pricingRow}>
+                      <span className={classes.pricingItem}>
+                        {offer.availableKg}
+                      </span>
+                      <span className={classes.pricingItem}> à </span>
+                      <span className={classes.priceItem}>
+                        {offer.pricePerKg} {offer.currencyUnit}/Kg
+                      </span>
+                    </div>
                   </Grid>
                   <Grid item xs={4} className={classes.grid}>
                     <Typography>
-                      {moment(this.offer.date).format('MMMM Do YYYY')}
+                      {moment(offer.departureDate).format('MMMM Do YYYY')}
                     </Typography>
                   </Grid>
                   <Grid item xs={1} className={classes.grid}>
@@ -126,13 +150,13 @@ export class OfferComponent extends React.Component {
                   </Grid>
                   <Grid item xs className={classes.grid}>
                     <Typography className={classes.left}>
-                      <span> {this.offer.locationFrom} </span>
+                      <span> {offer.from} </span>
                     </Typography>
                     <Typography className={classes.left}>
                       <ArrowForwardIcon />
                     </Typography>
                     <Typography className={classes.left}>
-                      <span>{this.offer.locationTo}</span>
+                      <span>{offer.to}</span>
                     </Typography>
                   </Grid>
                 </Grid>
@@ -166,15 +190,16 @@ OfferComponent.contextTypes = {
 };
 OfferComponent.propTypes = {
   classes: PropTypes.object.isRequired,
-  offer: OfferType.isRequired
+  fetchOffer: PropTypes.func.isRequired,
+  offer: OfferType
 };
 
 const mapStateToProps = ({ offers: { selectedOffer } }) => ({
-  selectedOffer
+  offer: selectedOffer
 });
 const mapDispatchToProps = dispatch => {
   return {
-    onSelectOffer: id => dispatch(selectOffer(id))
+    fetchOffer: id => dispatch(fetchOffer(id))
   };
 };
 
