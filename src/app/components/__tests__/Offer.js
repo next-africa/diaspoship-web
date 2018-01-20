@@ -10,7 +10,7 @@ import { mount } from 'enzyme';
 // App imports
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
 import createConnectedComponent from '../../../test-util/create-connected-component';
-import Offer, { OfferComponent } from '../Offer';
+import Offer, { OfferComponent } from '../OfferList/Offer';
 
 describe('Offer', () => {
   let mockStore;

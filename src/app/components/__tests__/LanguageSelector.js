@@ -5,7 +5,7 @@ import { mount } from 'enzyme';
 import '../../../test-util/enzyme-configuration';
 import LanguageSelectorContainer, {
   LanguageSelector
-} from '../LanguageSelector';
+} from '../LanguageSelector/index';
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
 import createConnectedComponent from '../../../test-util/create-connected-component';
 

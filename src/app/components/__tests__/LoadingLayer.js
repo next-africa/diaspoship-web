@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadingLayer from '../LoadingLayer';
+import LoadingLayer from '../LoadingLayer/index';
 import renderer from 'react-test-renderer';
 
 describe('LoadingLayer', () => {

@@ -9,7 +9,7 @@ import createConnectedComponent from '../../../test-util/create-connected-compon
 import thunk from 'redux-thunk';
 
 import { INITIAL_STATE } from '../../reducers/offers';
-import OfferListContainer, { OfferList } from '../OfferList';
+import OfferListContainer, { OfferList } from '../OfferList/OfferList';
 import { fetchingOffers } from '../../actions/offers';
 
 describe('OfferList component', () => {

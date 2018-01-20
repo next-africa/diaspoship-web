@@ -3,15 +3,15 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 //App imports
-import Header from './components/Header';
-import Home from './components/Home';
-import HelmetIntl from './components/HelmetIntl';
+import Header from './components/Header/index';
+import Home from './components/Home/index';
+import HelmetIntl from './components/HelmetIntl/index';
 import { selectLanguage } from './actions/translation';
 import configureStore from './store/configureStore';
 import { initializeFacebookSDK } from './actions/session';
-import Offer from './components/Offer';
+import Offer from './components/OfferList/Offer';
 //Material UI
 import { withStyles } from 'material-ui/styles';
 

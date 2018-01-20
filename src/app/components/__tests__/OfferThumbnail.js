@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../../test-util/enzyme-configuration';
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
-import OfferThumbnail from '../OfferThumbnail';
+import OfferThumbnail from '../OfferList/OfferThumbnail';
 
 describe('OfferThumbnail component', () => {
   it('should render correctly', () => {

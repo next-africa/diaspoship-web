@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 import Rater from 'react-rater';
 import { withRouter } from 'react-router';
@@ -19,8 +19,8 @@ import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 
 // App imports
-import { fetchOffer } from '../actions/offers';
-import OfferType from '../types/offer';
+import { fetchOffer } from '../../actions/offers';
+import OfferType from '../../types/offer';
 
 const styles = theme => ({
   root: {

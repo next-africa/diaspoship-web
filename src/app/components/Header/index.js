@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 import { intlShape, injectIntl } from 'react-intl';
 //Material-UI
 import { withStyles } from 'material-ui/styles';
@@ -11,8 +11,8 @@ import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import HelpIcon from 'material-ui-icons/Help';
 //App Imports
-import LanguageSelector from './LanguageSelector';
-import UserStatus from './UserStatus';
+import Language from '../../container/Language';
+import UserStatus from '../../container/UserStatus';
 
 const styles = theme => ({
   appTitle: {
@@ -63,7 +63,7 @@ function Header({ classes, intl: { formatMessage }, ...props }) {
           <HelpIcon />
           <span>{helpButtonText}</span>
         </Button>
-        <LanguageSelector />
+        <Language />
       </Toolbar>
     </AppBar>
   );
