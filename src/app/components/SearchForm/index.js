@@ -78,7 +78,6 @@ class SearchForm extends React.Component {
         from: this.state.textFieldFrom,
         to: this.state.textFieldTo
       };
-      this.props.onSearch(payload);
     }
   }
 
@@ -141,8 +140,7 @@ SearchForm.contextTypes = {
 };
 
 SearchForm.propTypes = {
-  classes: PropTypes.object.isRequired,
-  onSearch: PropTypes.func.isRequired
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(injectIntl(SearchForm));
