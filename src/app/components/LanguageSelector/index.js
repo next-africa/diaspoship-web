@@ -57,7 +57,6 @@ class LanguageSelector extends React.PureComponent {
           id="language-selector-menu"
           anchorEl={this.state.anchorEl}
           open={this.state.isOpen}
-          onRequestClose={this.handleRequestClose}
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,

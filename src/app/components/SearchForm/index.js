@@ -40,47 +40,6 @@ const styles = theme => ({
 });
 
 class SearchForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      textFieldFrom: '',
-      textFieldTo: ''
-    };
-    this._handleTextFieldFrom = this._handleTextFieldFrom.bind(this);
-    this._handleTextFieldTo = this._handleTextFieldTo.bind(this);
-    // this.handleSearch = this.handleSearch.bind(this);
-  }
-
-  _handleTextFieldFrom(e) {
-    const from = e.target.value;
-    this.setState(prevState => {
-      return {
-        textFieldFrom: from,
-        textFieldTo: prevState.textFieldTo
-      };
-    });
-    this.handleSearch();
-  }
-
-  _handleTextFieldTo(e) {
-    const to = e.target.value;
-    this.setState(function(prevState) {
-      return {
-        textFieldFrom: prevState.textFieldFrom,
-        textFieldTo: to
-      };
-    });
-    this.handleSearch();
-  }
-  handleSearch() {
-    if (this.state.textFieldFrom !== '') {
-      let payload = {
-        from: this.state.textFieldFrom,
-        to: this.state.textFieldTo
-      };
-    }
-  }
-
   render() {
     const classes = this.props.classes;
     const formatMessage = this.context.intl.formatMessage;
@@ -113,8 +72,6 @@ class SearchForm extends React.Component {
           }}
           fullWidth
           margin="normal"
-          value={this.state.textFieldFrom}
-          onChange={this._handleTextFieldFrom}
         />
 
         <TextField
@@ -127,8 +84,6 @@ class SearchForm extends React.Component {
           }}
           fullWidth
           margin="normal"
-          value={this.state.textFieldTo}
-          onChange={this._handleTextFieldTo}
         />
       </Card>
     );
