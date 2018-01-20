@@ -22,7 +22,9 @@ const styles = theme => ({
     maxWidth: '1140px'
   }
 });
+
 const store = configureStore();
+
 store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
 store.dispatch(initializeFacebookSDK());
 
@@ -40,9 +42,11 @@ const AppBody = ({ selectedLanguage, selectedTranslations, classes }) => (
     </Router>
   </IntlProvider>
 );
+
 AppBody.propTypes = {
   classes: PropTypes.object.isRequired
 };
+
 const mapStateToProps = ({
   translation: { selectedLanguage, selectedTranslations }
 }) => ({

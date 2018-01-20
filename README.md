@@ -4,6 +4,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+## Environment Variables
+
+The following environment variables are needed to run the app:
+
+```
+NODE_PATH=src/
+REACT_APP_SECRET_FB_APP_ID=
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
