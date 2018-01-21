@@ -3,7 +3,8 @@ import offers, { INITIAL_STATE } from '../offers';
 import {
   fetchingOffers,
   receiveOffers,
-  selectOffer
+  selectOffer,
+  fetchOffer
 } from '../../actions/offers';
 
 describe('Offers reducer', () => {
@@ -48,7 +49,7 @@ describe('Offers reducer', () => {
 
     const payload = 3;
 
-    expect(offers(currentState, selectOffer(payload))).toEqual({
+    expect(offers(currentState, selectOffer(selectedOffer))).toEqual({
       ...currentState,
       selectedOffer: selectedOffer
     });
