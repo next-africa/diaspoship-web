@@ -1,7 +1,6 @@
 // React
 import React from 'react';
-import PropTypes from 'proptypes';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 //Material-UI
@@ -10,9 +9,8 @@ import { LinearProgress } from 'material-ui/Progress';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 //App
-import OfferType from '../types/offer';
+import OfferType from '../../types/offer';
 import OfferThumbnail from './OfferThumbnail';
-import { fetchOffers } from '../actions/offers';
 
 const styles = theme => ({
   root: {
@@ -103,19 +101,5 @@ OfferListComponent.propTypes = {
   onFetchOffers: PropTypes.func.isRequired
 };
 
-const mapStateToProps = ({
-  offers: { error, isFetching, filters, offers }
-}) => ({
-  error,
-  isFetching,
-  filters,
-  offers
-});
-
-const mapDispatchToProps = dispatch => ({
-  onFetchOffers: () => dispatch(fetchOffers())
-});
-
-export const OfferList = withStyles(styles)(withRouter(OfferListComponent));
-
-export default connect(mapStateToProps, mapDispatchToProps)(OfferList);
+export const OfferList = withStyles(styles)(OfferListComponent);
+export default withRouter(OfferList);

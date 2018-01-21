@@ -11,7 +11,7 @@ import HelmetIntl from './components/HelmetIntl/index';
 import { selectLanguage } from './actions/translation';
 import configureStore from './store/configureStore';
 import { initializeFacebookSDK } from './actions/session';
-import Offer from './components/OfferList/Offer';
+import Offer from './container/Offer';
 //Material UI
 import { withStyles } from 'material-ui/styles';
 

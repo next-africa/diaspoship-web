@@ -9,7 +9,7 @@ import createConnectedComponent from '../../../test-util/create-connected-compon
 import thunk from 'redux-thunk';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { INITIAL_STATE } from '../../reducers/offers';
-import OfferListContainer from '../../container/Offers/index';
+import OfferListContainer from '../../container/OfferList/index';
 import { OfferList } from '../../components/OfferList/index';
 import { fetchingOffers } from '../../actions/offers';
 

@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
 //App Imports
 import Search from '../../container/Search';
-import Offers from '../../container/Offers/index';
+import Offers from '../../container/OfferList/index';
 
 const styles = theme => ({
   marketingMessage: {

@@ -6,7 +6,6 @@ import Rater from 'react-rater';
 import { withRouter } from 'react-router';
 import 'react-rater/lib/react-rater.css';
 import moment from 'moment';
-import { connect } from 'react-redux';
 // Material-uI
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
@@ -19,7 +18,6 @@ import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 
 // App imports
-import { fetchOffer } from '../../actions/offers';
 import OfferType from '../../types/offer';
 
 const styles = theme => ({
@@ -78,7 +76,7 @@ const styles = theme => ({
   }
 });
 
-export class OfferComponent extends React.Component {
+class OfferComponent extends React.Component {
   componentWillMount() {
     let id = this.props.match.params.offerID;
     this.props.fetchOffer(id);
@@ -194,18 +192,4 @@ OfferComponent.propTypes = {
   offer: OfferType
 };
 
-const mapStateToProps = ({ offers: { selectedOffer } }) => ({
-  offer: selectedOffer
-});
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchOffer: id => dispatch(fetchOffer(id))
-  };
-};
-
-const Offer = withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(
-    withStyles(styles)(OfferComponent)
-  )
-);
-export default Offer;
+export default withRouter(withStyles(styles)(OfferComponent));
