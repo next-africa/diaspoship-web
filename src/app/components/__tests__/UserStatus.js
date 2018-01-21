@@ -4,8 +4,10 @@ import { mount } from 'enzyme';
 import '../../../test-util/enzyme-configuration';
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
 import createConnectedComponent from '../../../test-util/create-connected-component';
-import UserStatus, { User, LoginComponent } from '../Profile/UserStatus';
-import Login from '../Login/index';
+import UserStatus from '../../container/UserStatus';
+import LoginComponent from '../../components/Profile';
+import User from '../../components/Profile/User';
+import Login from '../../components/Profile';
 import { userIsConnecting, resetUser } from '../../actions/session';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
@@ -49,7 +51,7 @@ describe('UserStatus container', () => {
   it('get props from the store', () => {
     const verify =
       loginComponent.prop('isConnected') === true &&
-      loginComponent.prop('isConnecting') == false &&
+      loginComponent.prop('isConnecting') === false &&
       loginComponent.prop('user').id === '3242342343532' &&
       loginComponent.prop('user').email === 'test@gmail.com' &&
       loginComponent.prop('user').name === 'toto' &&

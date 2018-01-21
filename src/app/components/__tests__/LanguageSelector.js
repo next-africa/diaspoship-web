@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import configureStore from 'redux-mock-store';
 import { mount } from 'enzyme';
 import '../../../test-util/enzyme-configuration';
-import LanguageSelectorContainer, {
-  LanguageSelector
-} from '../LanguageSelector/index';
+import LanguageSelectorContainer from '../../container/Language';
+import LanguageSelector from '../LanguageSelector/index';
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
 import createConnectedComponent from '../../../test-util/create-connected-component';
 

@@ -7,9 +7,10 @@ import createComponentWithIntl from '../../../test-util/create-component-with-in
 import renderer from 'react-test-renderer';
 import createConnectedComponent from '../../../test-util/create-connected-component';
 import thunk from 'redux-thunk';
-
+import { MemoryRouter as Router } from 'react-router-dom';
 import { INITIAL_STATE } from '../../reducers/offers';
-import OfferListContainer, { OfferList } from '../OfferList/OfferList';
+import OfferListContainer from '../../container/Offers/index';
+import { OfferList } from '../../components/OfferList/index';
 import { fetchingOffers } from '../../actions/offers';
 
 describe('OfferList component', () => {
@@ -100,9 +101,16 @@ describe('OfferList Container', () => {
   });
 
   const root = mount(
-    createConnectedComponent(createComponentWithIntl(<OfferListContainer />), {
-      store: mockStore
-    })
+    createConnectedComponent(
+      createComponentWithIntl(
+        <Router>
+          <OfferListContainer />
+        </Router>
+      ),
+      {
+        store: mockStore
+      }
+    )
   );
 
   const offerList = root.find(OfferList);
@@ -111,7 +119,11 @@ describe('OfferList Container', () => {
     const div = document.createElement('div');
     ReactDOM.render(
       createConnectedComponent(
-        createComponentWithIntl(<OfferListContainer />),
+        createComponentWithIntl(
+          <Router>
+            <OfferListContainer />
+          </Router>
+        ),
         { store: mockStore }
       ),
       div
