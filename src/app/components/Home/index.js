@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import { withStyles } from 'material-ui/styles';
 //App Imports
 import Search from '../../container/Search';
-import OfferList from '../OfferList/OfferList';
+import Offers from '../../container/Offers/index';
 
 const styles = theme => ({
   marketingMessage: {
@@ -30,7 +30,7 @@ const Home = function({ classes }) {
         <FormattedMessage id="pages.home.why-prompt" />
       </div>
       <Search />
-      <OfferList className={classes.offerList} />
+      <Offers className={classes.offerList} />
     </div>
   );
 };

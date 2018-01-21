@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 
 import Login from './Login';
 import User from './User';
-export const UserStatus = ({
-  isConnected,
-  isConnecting,
-  user,
-  onLogin,
-  onLogout
-}) => {
+const UserStatus = ({ isConnected, isConnecting, user, onLogin, onLogout }) => {
   if (isConnecting) {
     return <p>Loading…</p>;
   } else if (isConnected) {
