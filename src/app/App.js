@@ -5,9 +5,9 @@ import { connect, Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 //App imports
-import Header from './components/Header/index';
-import Home from './components/Home/index';
-import HelmetIntl from './components/HelmetIntl/index';
+import Header from './components/Header';
+import Home from './components/Home';
+import HelmetIntl from './components/HelmetIntl';
 import { selectLanguage } from './actions/translation';
 import configureStore from './store/configureStore';
 import { initializeFacebookSDK } from './actions/session';
