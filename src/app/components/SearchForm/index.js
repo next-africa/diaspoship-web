@@ -1,11 +1,15 @@
 // React
 import React from 'react';
+import { injectIntl, intlShape } from 'react-intl';
 import PropTypes from 'prop-types';
-import { intlShape } from 'react-intl';
-//Material-ui
+// Material-ui
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Card from 'material-ui/Card';
+// React-intl
+import { FormattedMessage } from 'react-intl';
+// Services
+import GooglePlacesService from '../../services/google-places';
 
 const styles = theme => ({
   root: {
@@ -43,90 +47,96 @@ class SearchForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.initializeAutocomplete = this.initializeAutocomplete.bind(this);
-  }
-
-  initializeAutocomplete(id) {
-    var element = document.getElementById(id);
-
-    if (element) {
-      var autocomplete = new window.google.maps.places.Autocomplete(element, {
-        types: ['geocode']
-      });
-      window.google.maps.event.addListener(
-        autocomplete,
-        'place_changed',
-        function() {
-          var place = autocomplete.getPlace();
-
-          console.log(place);
-
-          for (var i in place.address_components) {
-            var component = place.address_components[i];
-            for (var j in component.types) {
-              var type_element = document.getElementById(component.types[j]);
-              if (type_element) {
-                type_element.value = component.long_name;
-              }
-            }
-          }
-        }
-      );
-    }
+    this.state = {
+      isLoadingGooglePlacesLibrary: true,
+      isGooglePlacesLibraryAvailable: false
+    };
   }
 
   componentDidMount() {
-    window.google.maps.event.addDomListener(
-      window,
-      'load',
-      function() {
-        this.initializeAutocomplete('origin-input');
-        this.initializeAutocomplete('destination-input');
-      }.bind(this)
-    );
+    // TODO: Refactor this to use classes instead of ids when we will move away from Material UI React
+    GooglePlacesService.loadGooglePlacesLibrary(this.context.intl.locale)
+      .then(() => {
+        GooglePlacesService.initializeAutocompleteField(
+          window.document.getElementById('origin-input'),
+          location => console.log(`Origin: ${location.name}`)
+        );
+        GooglePlacesService.initializeAutocompleteField(
+          window.document.getElementById('destination-input'),
+          location => console.log(`Destination: ${location.name}`)
+        );
+
+        this.setState({
+          isLoadingGooglePlacesLibrary: false,
+          isGooglePlacesLibraryAvailable: true
+        });
+      })
+      .catch(() => {
+        this.setState({
+          isLoadingGooglePlacesLibrary: false,
+          isGooglePlacesLibraryAvailable: false
+        });
+      });
   }
 
   render() {
     const classes = this.props.classes;
-
     const formatMessage = this.context.intl.formatMessage;
-    const translation = {
-      searchFromPlaceholder: formatMessage({
-        id: 'components.search-form.from.placeholder'
-      }),
-      searchFromLabel: formatMessage({
-        id: 'components.search-form.from.label'
-      }),
-      searchToLabel: formatMessage({ id: 'components.search-form.to.label' }),
-      searchToPlaceholder: formatMessage({
-        id: 'components.search-form.to.placeholder'
-      })
-    };
-    return (
-      <Card className={classes.root}>
-        <TextField
-          label={translation.searchFromLabel}
-          className={classes.inputField}
-          labelClassName={classes.labelClassName}
-          InputProps={{
-            id: 'origin-input',
-            placeholder: translation.searchFromPlaceholder
-          }}
-          fullWidth
-          margin="normal"
-        />
+    const isSearchNotPossible =
+      !this.state.isLoadingGooglePlacesLibrary &&
+      !this.state.isGooglePlacesLibraryAvailable;
 
-        <TextField
-          label={translation.searchToLabel}
-          className={classes.inputField}
-          labelClassName={classes.labelClassName}
-          InputProps={{
-            id: 'destination-input',
-            placeholder: translation.searchToPlaceholder
-          }}
-          fullWidth
-          margin="normal"
-        />
+    const searchFromLabel = formatMessage({
+      id: 'components.search-form.from.label'
+    });
+
+    const searchFromPlaceholder = formatMessage({
+      id: 'components.search-form.from.placeholder'
+    });
+
+    const searchToLabel = formatMessage({
+      id: 'components.search-form.to.label'
+    });
+
+    const searchToPlaceholder = formatMessage({
+      id: 'components.search-form.to.placeholder'
+    });
+
+    return (
+      <Card>
+        <div className={classes.root}>
+          <TextField
+            label={searchFromLabel}
+            className={classes.inputField}
+            labelClassName={classes.labelClassName}
+            InputProps={{
+              id: 'origin-input',
+              placeholder: searchFromPlaceholder
+            }}
+            fullWidth
+            margin="normal"
+          />
+
+          <TextField
+            label={searchToLabel}
+            className={classes.inputField}
+            labelClassName={classes.labelClassName}
+            InputProps={{
+              id: 'destination-input',
+              placeholder: searchToPlaceholder
+            }}
+            fullWidth
+            margin="normal"
+          />
+        </div>
+
+        {isSearchNotPossible ? (
+          <p>
+            <FormattedMessage id="components.search-form.unavailable" />
+          </p>
+        ) : (
+          ''
+        )}
       </Card>
     );
   }
@@ -140,4 +150,4 @@ SearchForm.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(SearchForm);
+export default withStyles(styles)(injectIntl(SearchForm));
