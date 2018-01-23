@@ -13,6 +13,8 @@ export default {
   'components.search-form.from.placeholder': 'Indiquez ville ou pays',
   'components.search-form.to.label': 'À ?',
   'components.search-form.to.placeholder': 'Indiquez ville ou pays',
+  'components.search-form.unavailable':
+    "Désolé, nous ne sommes pas en mesure d'effectuer une recherche en ce moment",
 
   'components.language-selector.label': 'Changer la langue',
 

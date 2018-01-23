@@ -13,6 +13,8 @@ export default {
   'components.search-form.from.placeholder': 'Enter city or country',
   'components.search-form.to.label': 'Whereto ?',
   'components.search-form.to.placeholder': 'Enter city or country',
+  'components.search-form.unavailable':
+    'Sorry, we are not able to perform a search at this moment',
 
   'components.language-selector.label': 'Change language',
 

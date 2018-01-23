@@ -20,8 +20,7 @@
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-thunk": "^2.2.0",
-    "source-map-explorer": "^1.4.0",
-    "styled-components": "^2.1.2"
+    "source-map-explorer": "^1.4.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,json,css}": [
@@ -45,10 +44,13 @@
     "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-links": "^3.2.6",
     "@storybook/react": "^3.2.8",
+    "babel-eslint": "^8.2.1",
     "coveralls": "^2.13.1",
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.1.0",
-    "fs-extra": "^4.0.2",
+    "eslint": "^4.16.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.5.0",
     "husky": "^0.14.3",
     "jest-cli": "^21.2.1",
     "lint-staged": "^4.2.1",
