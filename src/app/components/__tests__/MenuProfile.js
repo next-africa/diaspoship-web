@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../../../test-util/enzyme-configuration';
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
-import MenuProfile from '../MenuProfile';
+import MenuProfile from '../Profile/MenuProfile';
 
 describe('MenuProfile', () => {
   it('should render correctly', () => {

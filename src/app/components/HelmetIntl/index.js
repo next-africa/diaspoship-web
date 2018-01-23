@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { injectIntl, intlShape } from 'react-intl';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 
 export const HelmetIntl = ({
   intl: { formatMessage },

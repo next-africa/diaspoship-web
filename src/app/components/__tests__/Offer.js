@@ -3,21 +3,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
-
+import thunk from 'redux-thunk';
 //enzyme
 import { mount } from 'enzyme';
 
 // App imports
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
 import createConnectedComponent from '../../../test-util/create-connected-component';
-import Offer, { OfferComponent } from '../Offer';
+import OfferComponent from '../../components/Offer';
+import Offer from '../../container/Offer';
 
 describe('Offer', () => {
   let mockStore;
   let root;
   let TheOfferComponent;
   beforeEach(() => {
-    mockStore = configureMockStore([])({
+    mockStore = configureMockStore([thunk])({
       offers: {
         offersList: [
           {

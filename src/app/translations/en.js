@@ -16,6 +16,10 @@ export default {
 
   'components.language-selector.label': 'Change language',
 
+  'components.offer-list.header.error':
+    'An error occurred while searching for offers',
+  'components.offer-list.header.noFilters': 'Latest offers',
+
   'languages.en': 'English',
   'languages.fr': 'French',
 

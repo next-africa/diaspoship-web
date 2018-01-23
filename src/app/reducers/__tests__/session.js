@@ -8,18 +8,18 @@ import {
 } from '../../actions/session';
 import { INITIAL_STATE } from '../session';
 
-describe('Session reduicer', () => {
+describe('Session reducer', () => {
   it('should return the initial state', () => {
     expect(session(undefined, {})).toEqual(INITIAL_STATE);
   });
-  it('it should create an action to set the user connexion status', () => {
+  it('should create an action to set the user connexion status', () => {
     const payload = true;
     expect(session(undefined, isUserConnected(payload))).toEqual({
       ...INITIAL_STATE,
       isConnected: payload
     });
   });
-  it('it should create an action to set the user connecting status', () => {
+  it('should create an action to set the user connecting status', () => {
     const payload = true;
     expect(
       session(
@@ -31,7 +31,7 @@ describe('Session reduicer', () => {
       isConnecting: payload
     });
   });
-  it('it should create an action to set the existing user infos', () => {
+  it('should create an action to set the existing user infos', () => {
     const payload = {
       id: '3141412214124',
       email: 'test@hotmail.fr',
@@ -57,7 +57,7 @@ describe('Session reduicer', () => {
       user: payload
     });
   });
-  it('it should create an action to reset the existing user status', () => {
+  it('should create an action to reset the existing user status', () => {
     expect(session(undefined, resetUser())).toEqual(INITIAL_STATE);
   });
 });

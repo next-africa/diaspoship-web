@@ -1,7 +1,5 @@
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
 
 import {
   logout,
@@ -14,6 +12,9 @@ import {
   loadUserInfos
 } from '../session';
 import { INITIAL_STATE } from '../../reducers/session';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('session actions', () => {
   let store;
@@ -122,6 +123,7 @@ describe('session actions', () => {
         }
       }
     };
+
     beforeEach(() => {
       global.window.FB.api = (
         me,
@@ -131,6 +133,7 @@ describe('session actions', () => {
         callback(response);
       };
     });
+
     it('should dispatch setUser and userIsConnecting(false) if there is no  error', () => {
       store.dispatch(loadUserInfos());
       expect(store.getActions()).toEqual([

@@ -1,11 +1,12 @@
 // React
 import React from 'react';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 //Material-UI
 import { withStyles } from 'material-ui/styles';
 //App Imports
-import SearchForm from './SearchForm';
+import Search from '../../container/Search';
+import Offers from '../../container/OfferList';
 
 const styles = theme => ({
   marketingMessage: {
@@ -15,6 +16,10 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
+  },
+
+  offerList: {
+    marginTop: '20px'
   }
 });
 
@@ -24,7 +29,8 @@ const Home = function({ classes }) {
       <div className={classes.marketingMessage}>
         <FormattedMessage id="pages.home.why-prompt" />
       </div>
-      <SearchForm />
+      <Search />
+      <Offers className={classes.offerList} />
     </div>
   );
 };

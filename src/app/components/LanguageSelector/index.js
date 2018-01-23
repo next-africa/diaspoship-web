@@ -1,7 +1,6 @@
 //React
 import React from 'react';
-import PropTypes from 'proptypes';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { intlShape } from 'react-intl';
 //Material-UI
 import { withStyles } from 'material-ui/styles';
@@ -10,8 +9,7 @@ import Menu, { MenuItem } from 'material-ui/Menu';
 import LanguageIcon from 'material-ui-icons/Language';
 import CheckedIcon from 'material-ui-icons/CheckCircle';
 //App Imports
-import { selectLanguage } from '../actions/translation';
-import { AVAILABLE_LANGUAGES } from '../constants';
+import { AVAILABLE_LANGUAGES } from '../../constants';
 
 const ITEM_HEIGHT = 48;
 
@@ -21,18 +19,18 @@ const styles = theme => ({
   }
 });
 
-class LanguageSelectorComponent extends React.Component {
+class LanguageSelector extends React.PureComponent {
   state = {
     anchorEl: null,
     isOpen: false
   };
 
   handleIconClick = event => {
-    this.setState({ open: true, anchorEl: event.currentTarget });
+    this.setState({ isOpen: true, anchorEl: event.currentTarget });
   };
 
   handleRequestClose = () => {
-    this.setState({ open: false });
+    this.setState({ isOpen: false });
   };
 
   handleLanguageSelection = language => {
@@ -48,7 +46,7 @@ class LanguageSelectorComponent extends React.Component {
           aria-label={this.context.intl.formatMessage({
             id: 'components.language-selector.label'
           })}
-          aria-owns={this.state.open ? 'language-selector-menu' : null}
+          aria-owns={this.state.isOpen ? 'language-selector-menu' : null}
           aria-haspopup="true"
           onClick={this.handleIconClick}
         >
@@ -58,8 +56,7 @@ class LanguageSelectorComponent extends React.Component {
         <Menu
           id="language-selector-menu"
           anchorEl={this.state.anchorEl}
-          open={this.state.open}
-          onRequestClose={this.handleRequestClose}
+          open={this.state.isOpen}
           PaperProps={{
             style: {
               maxHeight: ITEM_HEIGHT * 4.5,
@@ -91,25 +88,13 @@ class LanguageSelectorComponent extends React.Component {
   }
 }
 
-LanguageSelectorComponent.propTypes = {
+LanguageSelector.propTypes = {
   selectedLanguage: PropTypes.string.isRequired,
   onSelectLanguage: PropTypes.func.isRequired
 };
 
-LanguageSelectorComponent.contextTypes = {
+LanguageSelector.contextTypes = {
   intl: intlShape.isRequired
 };
 
-const mapStateToProps = ({ translation: { selectedLanguage } }) => ({
-  selectedLanguage
-});
-
-const mapDispatchToProps = dispatch => ({
-  onSelectLanguage: language => dispatch(selectLanguage(language))
-});
-
-const LanguageSelector = withStyles(styles)(LanguageSelectorComponent);
-
-export { LanguageSelector };
-
-export default connect(mapStateToProps, mapDispatchToProps)(LanguageSelector);
+export default withStyles(styles)(LanguageSelector);

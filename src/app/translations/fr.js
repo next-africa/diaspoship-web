@@ -14,7 +14,11 @@ export default {
   'components.search-form.to.label': 'À ?',
   'components.search-form.to.placeholder': 'Indiquez ville ou pays',
 
-  'components.language-selector.label': 'Change language',
+  'components.language-selector.label': 'Changer la langue',
+
+  'components.offer-list.header.error':
+    'Une erreur est survenue lors de la recherche des offres',
+  'components.offer-list.header.noFilters': 'Offres récentes',
 
   'languages.en': 'Anglais',
   'languages.fr': 'Français',

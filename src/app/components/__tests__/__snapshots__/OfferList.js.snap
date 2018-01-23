@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OfferList component renders correctly when offers are being fetched 1`] = `
+<div
+  className="MuiPaper-root-5 MuiPaper-shadow2-9 MuiPaper-rounded-6 OfferListComponent-root-1"
+>
+  <div
+    className="OfferListComponent-offerListHeader-3"
+  >
+    <h4>
+      <span>
+        Latest offers
+      </span>
+    </h4>
+    <div
+      className="MuiLinearProgress-root-32 MuiLinearProgress-primaryColor-33 MuiLinearProgress-rootQuery-43"
+    >
+      <div
+        className="MuiLinearProgress-bar-39 MuiLinearProgress-primaryColorBar-34 MuiLinearProgress-indeterminateBar1-44"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar-39 MuiLinearProgress-primaryColorBar-34 MuiLinearProgress-indeterminateBar2-45"
+        style={Object {}}
+      />
+    </div>
+  </div>
+  <div
+    className="OfferListComponent-offerListContent-2"
+  />
+</div>
+`;
+
+exports[`OfferList component renders correctly when offers are not being fetched 1`] = `
+<div
+  className="MuiPaper-root-5 MuiPaper-shadow2-9 MuiPaper-rounded-6 OfferListComponent-root-1"
+>
+  <div
+    className="OfferListComponent-offerListHeader-3"
+  >
+    <h4>
+      <span>
+        Latest offers
+      </span>
+    </h4>
+  </div>
+  <div
+    className="OfferListComponent-offerListContent-2"
+  />
+</div>
+`;

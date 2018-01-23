@@ -3,7 +3,7 @@ import React from 'react';
 import { IntlProvider } from 'react-intl';
 import { connect, Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 //App imports
 import Header from './components/Header';
 import Home from './components/Home';
@@ -11,7 +11,7 @@ import HelmetIntl from './components/HelmetIntl';
 import { selectLanguage } from './actions/translation';
 import configureStore from './store/configureStore';
 import { initializeFacebookSDK } from './actions/session';
-import Offer from './components/Offer';
+import Offer from './container/Offer';
 //Material UI
 import { withStyles } from 'material-ui/styles';
 
@@ -34,7 +34,7 @@ const AppBody = ({ selectedLanguage, selectedTranslations, classes }) => (
         <Header />
         <div className={classes.root}>
           <Route exact={true} path="/" component={Home} />
-          <Route path="/offer/:offerID" component={Offer} />
+          <Route path="/offers/:offerID" component={Offer} />
         </div>
       </div>
     </Router>

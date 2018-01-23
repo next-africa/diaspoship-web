@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import PropTypes from 'proptypes';
+import PropTypes from 'prop-types';
 import { intlShape, injectIntl } from 'react-intl';
 // Material Ui
 import { withStyles } from 'material-ui/styles';
