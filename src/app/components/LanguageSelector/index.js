@@ -42,7 +42,7 @@ class LanguageSelector extends React.PureComponent {
     return (
       <div>
         <IconButton
-          color="contrast"
+          color="inherit"
           aria-label={this.context.intl.formatMessage({
             id: 'components.language-selector.label'
           })}

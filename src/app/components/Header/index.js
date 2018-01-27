@@ -49,14 +49,14 @@ function Header({ classes, intl: { formatMessage }, ...props }) {
         </Typography>
         <UserStatus />
         <IconButton
-          color="contrast"
+          color="inherit"
           aria-label={helpButtonText}
           className={classes.toolbarButtonWithoutText}
         >
           <HelpIcon />
         </IconButton>
         <Button
-          color="contrast"
+          color="inherit"
           aria-label={helpButtonText}
           className={classes.toolbarButtonWithText}
         >

@@ -30,16 +30,16 @@ const Login = function({ classes, intl: { formatMessage }, ...props }) {
   return (
     <div>
       <IconButton
+        color="inherit"
         onClick={props.onLogin}
-        color="contrast"
         aria-label={loginButtonText}
         className={classes.toolbarButtonWithoutText}
       >
         <AccountIcon />
       </IconButton>
       <Button
+        color="inherit"
         onClick={props.onLogin}
-        color="contrast"
         aria-label={loginButtonText}
         className={classes.toolbarButtonWithText}
       >

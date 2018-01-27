@@ -1,6 +1,7 @@
 // React
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 //Material-UI
 import Card, { CardContent } from 'material-ui/Card';
 import { withStyles } from 'material-ui/styles';
@@ -10,13 +11,14 @@ import classNames from 'classnames';
 //App
 import OfferType from '../../types/offer';
 
-const styles = theme => ({
-  root: {
+const styles = () => ({
+  offerThumbnail: {
     display: 'flex',
     flex: '1 0 auto',
     flexDirection: 'column',
     lineHeight: '20px',
-    color: 'rgba(0, 0, 0, 0.87)'
+    color: 'rgba(0, 0, 0, 0.87)',
+    textTransform: 'none'
   },
 
   contentRow: {
@@ -58,7 +60,7 @@ const styles = theme => ({
 });
 
 const OfferThumbnail = ({ offer, classes, className, ...props }) => (
-  <Card className={classNames(classes.root, className)} {...props}>
+  <Card className={classNames(classes.offerThumbnail, className)} {...props}>
     <CardContent>
       <div className={classes.destinationRow}>
         <span className={classes.from}> {offer.from} </span>
@@ -72,7 +74,9 @@ const OfferThumbnail = ({ offer, classes, className, ...props }) => (
       </div>
       <div className={classes.pricingRow}>
         <span className={classes.pricingItem}>{offer.availableKg}</span>
-        <span className={classes.pricingItem}> à </span>
+        <FormattedMessage id="components.offer-list.thumbnail.pricing.to">
+          {txt => <span className={classes.pricingItem}>{txt}</span>}
+        </FormattedMessage>
         <span className={classes.priceItem}>
           {offer.pricePerKg} {offer.currencyUnit}/Kg
         </span>

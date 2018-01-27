@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { withRouter } from 'react-router-dom';
 //Material-UI
-import Paper from 'material-ui/Paper';
 import { LinearProgress } from 'material-ui/Progress';
+import Button from 'material-ui/Button';
 import { withStyles } from 'material-ui/styles';
 import classNames from 'classnames';
 //App
@@ -20,8 +20,8 @@ const styles = theme => ({
   offerListContent: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-between',
     padding: '5px',
+    justifyContent: 'space-between',
     flexWrap: 'wrap',
     [theme.breakpoints.up('sm')]: {
       flexDirection: 'row'
@@ -32,10 +32,12 @@ const styles = theme => ({
     padding: '10px 20px'
   },
 
-  offerThumbnail: {
+  offerThumbnailButton: {
     margin: '5px',
+    padding: 0,
     [theme.breakpoints.up('sm')]: {
-      flexBasis: '30%'
+      flex: '1 1 280px',
+      minWidth: '280px'
     }
   }
 });
@@ -67,7 +69,7 @@ class OfferListComponent extends React.Component {
     } = this.props;
 
     return (
-      <Paper className={classNames(classes.root, className)}>
+      <div className={classNames(classes.root, className)}>
         <div className={classes.offerListHeader}>
           <h4>
             <FormattedMessage id="components.offer-list.header.noFilters" />
@@ -79,16 +81,18 @@ class OfferListComponent extends React.Component {
         ) : (
           <div className={classes.offerListContent}>
             {offers.map(offer => (
-              <OfferThumbnail
-                className={classes.offerThumbnail}
-                onClick={() => history.push(`/offers/${offer.id}`)}
+              <Button
+                raised
                 key={offer.id}
-                offer={offer}
-              />
+                onClick={() => history.push(`/offers/${offer.id}`)}
+                className={classes.offerThumbnailButton}
+              >
+                <OfferThumbnail offer={offer} />
+              </Button>
             ))}
           </div>
         )}
-      </Paper>
+      </div>
     );
   }
 }

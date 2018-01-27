@@ -21,6 +21,7 @@ export default {
   'components.offer-list.header.error':
     'Une erreur est survenue lors de la recherche des offres',
   'components.offer-list.header.noFilters': 'Offres récentes',
+  'components.offer-list.thumbnail.pricing.to': 'à',
 
   'languages.en': 'Anglais',
   'languages.fr': 'Français',
