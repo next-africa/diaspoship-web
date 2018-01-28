@@ -89,7 +89,7 @@ class SearchForm extends React.Component {
 
       this.props.onSearch(from, to);
     } else {
-      this.props.onSearch('', '');
+      this.props.onResetFilters();
     }
   }
 

@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 
 // App import
 import SearchForm from '../../components/SearchForm';
-import { handleSearch } from '../../actions/offers';
+import { handleSearch, resetFilters } from '../../actions/offers';
 
 const Search = ({ ...props }) => <SearchForm {...props} />;
-const mapStateToProps = ({ offers: { offers, filteredOffers } }) => ({
-  offers,
-  filteredOffers
+const mapStateToProps = ({ offers: { offers } }) => ({
+  offers
 });
 const mapDispatchToProps = dispatch => ({
-  onSearch: (from, to) => dispatch(handleSearch(from, to))
+  onSearch: (from, to) => dispatch(handleSearch(from, to)),
+  onResetFilters: () => dispatch(resetFilters())
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

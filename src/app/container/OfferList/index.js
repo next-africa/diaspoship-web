@@ -7,14 +7,13 @@ import OfferList from '../../components/OfferList';
 
 const Offers = ({ ...props }) => <OfferList {...props} />;
 const mapStateToProps = ({
-  offers: { error, isFetching, filters, offers, filteredOffers, isSearching }
+  offers: { error, isFetching, filters, offers, filteredOffers }
 }) => ({
   error,
   isFetching,
-  filters,
   offers,
   filteredOffers,
-  isSearching
+  filters
 });
 
 const mapDispatchToProps = dispatch => ({

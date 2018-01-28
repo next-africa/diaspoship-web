@@ -6,8 +6,9 @@ import {
   fetchingOffers,
   receiveOffers,
   selectOffer,
-  doSearch,
-  isUserSearching
+  receiveFilteredOffers,
+  saveFilters,
+  resetFilters
 } from '../actions/offers';
 
 export const INITIAL_STATE = {
@@ -19,8 +20,7 @@ export const INITIAL_STATE = {
     to: null
   },
   filteredOffers: [],
-  selectedOffer: null,
-  isSearching: false
+  selectedOffer: null
 };
 
 export default handleActions(
@@ -28,10 +28,6 @@ export default handleActions(
     [selectOffer]: (state, { payload }) => ({
       ...state,
       selectedOffer: payload
-    }),
-    [isUserSearching]: (state, { payload }) => ({
-      ...state,
-      isSearching: payload
     }),
 
     [fetchingOffers]: state => ({
@@ -45,15 +41,26 @@ export default handleActions(
       isFetching: false,
       offers: payload
     }),
-    [doSearch]: (state, { payload }) => {
-      const currentOffers = state.offers;
+    [receiveFilteredOffers]: (state, { payload }) => {
       return {
         ...state,
-        filteredOffers: currentOffers.filter(
-          offer =>
-            offer.from.indexOf(payload.from) !== -1 ||
-            offer.to.indexOf(payload.to) !== -1
-        )
+        filteredOffers: payload
+      };
+    },
+    [resetFilters]: state => ({
+      ...state,
+      filters: {
+        from: null,
+        to: null
+      }
+    }),
+    [saveFilters]: (state, { payload }) => {
+      return {
+        ...state,
+        filters: {
+          from: payload.from,
+          to: payload.to
+        }
       };
     }
   },
