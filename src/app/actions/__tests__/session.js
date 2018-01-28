@@ -18,6 +18,7 @@ const mockStore = configureMockStore(middlewares);
 
 describe('session actions', () => {
   let store;
+
   const setupFacebookAPI = {
     setup() {
       global.window.FB = {
@@ -34,10 +35,12 @@ describe('session actions', () => {
       delete global.window.FB;
     }
   };
+
   beforeEach(() => {
     setupFacebookAPI.setup();
     store = mockStore({ session: INITIAL_STATE, translation: {} });
   });
+
   afterEach(() => {
     setupFacebookAPI.teardown();
   });

@@ -23,17 +23,18 @@ const jss = createJss(jssPressetDefault());
 
 jss.use(jssExtend());
 
-const styles = theme => ({
+const styles = () => ({
   root: {
     padding: '80px 5px 0',
     margin: '0 auto',
-    maxWidth: '1140px'
+    maxWidth: '1140px',
+    fontFamily: 'Roboto,sans-serif'
   }
 });
 
 const store = configureStore();
 
-store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
+store.dispatch(selectLanguage());
 store.dispatch(initializeFacebookSDK());
 
 const AppBody = ({ selectedLanguage, selectedTranslations, classes }) => (
