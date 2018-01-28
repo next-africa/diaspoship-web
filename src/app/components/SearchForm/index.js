@@ -49,8 +49,48 @@ class SearchForm extends React.Component {
 
     this.state = {
       isLoadingGooglePlacesLibrary: true,
-      isGooglePlacesLibraryAvailable: false
+      isGooglePlacesLibraryAvailable: false,
+      from: '',
+      to: ''
     };
+    this.handleSearch = this.handleSearch.bind(this);
+    this._handleTextFieldFrom = this._handleTextFieldFrom.bind(this);
+    this._handleTextFieldTo = this._handleTextFieldTo.bind(this);
+  }
+  _handleTextFieldFrom(e) {
+    const from = e.target.value;
+    if (from === '') {
+      this.setState(prevState => {
+        return {
+          from: from,
+          to: prevState.to
+        };
+      });
+      this.handleSearch();
+    }
+  }
+
+  _handleTextFieldTo(e) {
+    const to = e.target.value;
+    if (to === '') {
+      this.setState(function(prevState) {
+        return {
+          from: prevState.from,
+          to: to
+        };
+      });
+      this.handleSearch();
+    }
+  }
+  handleSearch() {
+    if (this.state.from !== '' && this.state.to !== '') {
+      const from = this.state.from;
+      const to = this.state.to;
+
+      this.props.onSearch(from, to);
+    } else {
+      this.props.onSearch('', '');
+    }
   }
 
   componentDidMount() {
@@ -59,11 +99,30 @@ class SearchForm extends React.Component {
       .then(() => {
         GooglePlacesService.initializeAutocompleteField(
           window.document.getElementById('origin-input'),
-          location => console.log(`Origin: ${location.name}`)
+          location => {
+            console.log(`Origin: ${location.name}`);
+            this.setState(function(prevState) {
+              return {
+                from: location.name,
+                to: prevState.to
+              };
+            });
+
+            this.handleSearch();
+          }
         );
         GooglePlacesService.initializeAutocompleteField(
           window.document.getElementById('destination-input'),
-          location => console.log(`Destination: ${location.name}`)
+          location => {
+            console.log(`Destination: ${location.name}`);
+            this.setState(function(prevState) {
+              return {
+                from: prevState.from,
+                to: location.name
+              };
+            });
+            this.handleSearch();
+          }
         );
 
         this.setState({
@@ -115,6 +174,7 @@ class SearchForm extends React.Component {
             }}
             fullWidth
             margin="normal"
+            onChange={this._handleTextFieldFrom}
           />
 
           <TextField
@@ -127,6 +187,7 @@ class SearchForm extends React.Component {
             }}
             fullWidth
             margin="normal"
+            onChange={this._handleTextFieldTo}
           />
         </div>
 

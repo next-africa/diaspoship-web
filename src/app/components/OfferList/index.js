@@ -63,11 +63,13 @@ class OfferListComponent extends React.Component {
       classes,
       className,
       isFetching,
+      isSearching,
       offers,
+      filteredOffers,
       error,
       history
     } = this.props;
-
+    const offerList = isSearching ? filteredOffers : offers;
     return (
       <div className={classNames(classes.root, className)}>
         <div className={classes.offerListHeader}>
@@ -101,7 +103,9 @@ OfferListComponent.propTypes = {
   classes: PropTypes.object.isRequired,
   error: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
+  isSearching: PropTypes.bool.isRequired,
   offers: PropTypes.arrayOf(OfferType).isRequired,
+  filteredOffers: PropTypes.arrayOf(OfferType).isRequired,
   onFetchOffers: PropTypes.func.isRequired
 };
 

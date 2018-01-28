@@ -1,8 +1,8 @@
 [
   {
     "id": "quebec-montreal-10",
-    "from": "Québec",
-    "to": "Montréal",
+    "from": "Québec City",
+    "to": "Montreal",
     "availableKg": "23",
     "pricePerKg": "20",
     "currencyUnit": "CAD",
@@ -12,8 +12,30 @@
   },
   {
     "id": "quebec-kinshasa-10",
-    "from": "Québec",
+    "from": "Québec City",
     "to": "Kinshasa",
+    "availableKg": "23",
+    "pricePerKg": "20",
+    "currencyUnit": "USD",
+    "departureDate": "2018-02-01",
+    "arrivalDate": "2018-02-02",
+    "type": ["DOCUMENT"]
+  },
+  {
+    "id": "Vancouver-New_York-16",
+    "from": "Vancouver",
+    "to": "New York",
+    "availableKg": "23",
+    "pricePerKg": "20",
+    "currencyUnit": "USD",
+    "departureDate": "2018-02-01",
+    "arrivalDate": "2018-02-02",
+    "type": ["DOCUMENT"]
+  },
+  {
+    "id": "quebec-Vancouver-16",
+    "from": "Québec City",
+    "to": "Vancouver",
     "availableKg": "23",
     "pricePerKg": "20",
     "currencyUnit": "USD",
