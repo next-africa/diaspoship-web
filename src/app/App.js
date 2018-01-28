@@ -14,6 +14,14 @@ import { initializeFacebookSDK } from './actions/session';
 import Offer from './container/Offer';
 //Material UI
 import { withStyles } from 'material-ui/styles';
+import { create as createJss } from 'jss';
+import { JssProvider } from 'react-jss';
+import jssExtend from 'jss-extend';
+import jssPressetDefault from 'jss-preset-default';
+
+const jss = createJss(jssPressetDefault());
+
+jss.use(jssExtend());
 
 const styles = theme => ({
   root: {
@@ -29,7 +37,11 @@ store.dispatch(selectLanguage(window.navigator.language.split('-')[0]));
 store.dispatch(initializeFacebookSDK());
 
 const AppBody = ({ selectedLanguage, selectedTranslations, classes }) => (
-  <IntlProvider locale={selectedLanguage} messages={selectedTranslations}>
+  <IntlProvider
+    key={selectedLanguage}
+    locale={selectedLanguage}
+    messages={selectedTranslations}
+  >
     <Router>
       <div>
         <HelmetIntl messageId="pages.home.title" />
@@ -57,9 +69,11 @@ const mapStateToProps = ({
 const AppBodyWithState = connect(mapStateToProps)(withStyles(styles)(AppBody));
 
 const App = () => (
-  <Provider store={store}>
-    <AppBodyWithState />
-  </Provider>
+  <JssProvider jss={jss}>
+    <Provider store={store}>
+      <AppBodyWithState />
+    </Provider>
+  </JssProvider>
 );
 
 export default App;

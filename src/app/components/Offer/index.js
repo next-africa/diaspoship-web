@@ -186,6 +186,7 @@ class OfferComponent extends React.Component {
 OfferComponent.contextTypes = {
   intl: intlShape.isRequired
 };
+
 OfferComponent.propTypes = {
   classes: PropTypes.object.isRequired,
   fetchOffer: PropTypes.func.isRequired,
