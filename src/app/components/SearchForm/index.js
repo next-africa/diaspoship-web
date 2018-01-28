@@ -60,12 +60,10 @@ class SearchForm extends React.Component {
   _handleTextFieldFrom(e) {
     const from = e.target.value;
     if (from === '') {
-      this.setState(prevState => {
-        return {
-          from: from,
-          to: prevState.to
-        };
-      });
+      this.setState(prevState => ({
+        ...prevState,
+        from
+      }));
       this.handleSearch();
     }
   }
@@ -73,21 +71,18 @@ class SearchForm extends React.Component {
   _handleTextFieldTo(e) {
     const to = e.target.value;
     if (to === '') {
-      this.setState(function(prevState) {
-        return {
-          from: prevState.from,
-          to: to
-        };
-      });
+      this.setState(prevState => ({
+        ...prevState,
+        to
+      }));
+
       this.handleSearch();
     }
   }
+
   handleSearch() {
     if (this.state.from !== '' && this.state.to !== '') {
-      const from = this.state.from;
-      const to = this.state.to;
-
-      this.props.onSearch(from, to);
+      this.props.onSearch(this.state.from, this.state.to);
     } else {
       this.props.onResetFilters();
     }
@@ -100,13 +95,10 @@ class SearchForm extends React.Component {
         GooglePlacesService.initializeAutocompleteField(
           window.document.getElementById('origin-input'),
           location => {
-            console.log(`Origin: ${location.name}`);
-            this.setState(function(prevState) {
-              return {
-                from: location.name,
-                to: prevState.to
-              };
-            });
+            this.setState(prevState => ({
+              ...prevState,
+              from: location.name
+            }));
 
             this.handleSearch();
           }
@@ -114,13 +106,10 @@ class SearchForm extends React.Component {
         GooglePlacesService.initializeAutocompleteField(
           window.document.getElementById('destination-input'),
           location => {
-            console.log(`Destination: ${location.name}`);
-            this.setState(function(prevState) {
-              return {
-                from: prevState.from,
-                to: location.name
-              };
-            });
+            this.setState(prevState => ({
+              ...prevState,
+              to: location.name
+            }));
             this.handleSearch();
           }
         );
