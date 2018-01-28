@@ -82,7 +82,7 @@ class OfferListComponent extends React.Component {
           <FormattedMessage id="components.offer-list.header.error" />
         ) : (
           <div className={classes.offerListContent}>
-            {offers.map(offer => (
+            {offerList.map(offer => (
               <Button
                 raised
                 key={offer.id}
