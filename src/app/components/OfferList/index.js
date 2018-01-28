@@ -64,13 +64,10 @@ class OfferListComponent extends React.Component {
       className,
       isFetching,
       offers,
-      filters,
-      filteredOffers,
       error,
       history
     } = this.props;
-    const offerList =
-      filters.from !== null && filters.to !== null ? filteredOffers : offers;
+
     return (
       <div className={classNames(classes.root, className)}>
         <div className={classes.offerListHeader}>
@@ -83,7 +80,7 @@ class OfferListComponent extends React.Component {
           <FormattedMessage id="components.offer-list.header.error" />
         ) : (
           <div className={classes.offerListContent}>
-            {offerList.map(offer => (
+            {offers.map(offer => (
               <Button
                 raised
                 key={offer.id}
@@ -106,7 +103,6 @@ OfferListComponent.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   filters: PropTypes.shape({ from: PropTypes.string, to: PropTypes.string }),
   offers: PropTypes.arrayOf(OfferType).isRequired,
-  filteredOffers: PropTypes.arrayOf(OfferType).isRequired,
   onFetchOffers: PropTypes.func.isRequired
 };
 
