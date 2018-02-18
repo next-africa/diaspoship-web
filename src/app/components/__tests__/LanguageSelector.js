@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import configureStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 import { mount } from 'enzyme';
 import '../../../test-util/enzyme-configuration';
 import LanguageSelectorContainer from '../../container/Language';
@@ -8,7 +9,7 @@ import LanguageSelector from '../LanguageSelector/index';
 import createComponentWithIntl from '../../../test-util/create-component-with-intl';
 import createConnectedComponent from '../../../test-util/create-connected-component';
 
-import { selectLanguage } from '../../actions/translation';
+import { setLanguage } from '../../actions/translation';
 
 import IconButton from 'material-ui/IconButton';
 
@@ -49,7 +50,7 @@ describe('LanguageSelector Component', () => {
 });
 
 describe('LanguageSelector Container', () => {
-  const mockStore = configureStore([])({
+  const mockStore = configureStore([thunk])({
     translation: {
       selectedLanguage: 'fr'
     }
@@ -80,9 +81,9 @@ describe('LanguageSelector Container', () => {
   });
 
   it('dispatches a selectLanguage action when the language is changed', () => {
-    const expectedActions = [selectLanguage('en')];
+    const expectedActions = [setLanguage('ar')];
 
-    languageSelector.prop('onSelectLanguage')('en');
+    languageSelector.prop('onSelectLanguage')('ar');
 
     expect(mockStore.getActions()).toEqual(expectedActions);
   });
