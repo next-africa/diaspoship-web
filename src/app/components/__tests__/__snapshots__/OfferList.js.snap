@@ -13,7 +13,9 @@ exports[`OfferList component renders correctly when offers are being fetched 1`]
       </span>
     </h4>
     <div
-      className="MuiLinearProgress-root-5 MuiLinearProgress-primaryColor-6 MuiLinearProgress-rootQuery-16"
+      className="MuiLinearProgress-root-5 MuiLinearProgress-primaryColor-6"
+      mode="query"
+      role="progressbar"
     >
       <div
         className="MuiLinearProgress-bar-12 MuiLinearProgress-primaryColorBar-7 MuiLinearProgress-indeterminateBar1-17"
