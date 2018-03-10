@@ -1,6 +1,9 @@
+//React import
 import React from 'react';
-import MenuProfile from './MenuProfile';
 import PropTypes from 'prop-types';
+//App imports
+import MenuProfile from './MenuProfile';
+
 const User = ({ user, onLogout }) => (
   <MenuProfile
     name={user.firstName}
