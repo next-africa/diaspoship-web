@@ -2,7 +2,7 @@
 
 exports[`OfferList component renders correctly when offers are being fetched 1`] = `
 <div
-  className="MuiPaper-root-5 MuiPaper-shadow2-9 MuiPaper-rounded-6 OfferListComponent-root-1"
+  className="OfferListComponent-root-1"
 >
   <div
     className="OfferListComponent-offerListHeader-3"
@@ -13,14 +13,16 @@ exports[`OfferList component renders correctly when offers are being fetched 1`]
       </span>
     </h4>
     <div
-      className="MuiLinearProgress-root-32 MuiLinearProgress-primaryColor-33 MuiLinearProgress-rootQuery-43"
+      className="MuiLinearProgress-root-5 MuiLinearProgress-primaryColor-6"
+      mode="query"
+      role="progressbar"
     >
       <div
-        className="MuiLinearProgress-bar-39 MuiLinearProgress-primaryColorBar-34 MuiLinearProgress-indeterminateBar1-44"
+        className="MuiLinearProgress-bar-12 MuiLinearProgress-primaryColorBar-7 MuiLinearProgress-indeterminateBar1-17"
         style={Object {}}
       />
       <div
-        className="MuiLinearProgress-bar-39 MuiLinearProgress-primaryColorBar-34 MuiLinearProgress-indeterminateBar2-45"
+        className="MuiLinearProgress-bar-12 MuiLinearProgress-primaryColorBar-7 MuiLinearProgress-indeterminateBar2-18"
         style={Object {}}
       />
     </div>
@@ -33,7 +35,7 @@ exports[`OfferList component renders correctly when offers are being fetched 1`]
 
 exports[`OfferList component renders correctly when offers are not being fetched 1`] = `
 <div
-  className="MuiPaper-root-5 MuiPaper-shadow2-9 MuiPaper-rounded-6 OfferListComponent-root-1"
+  className="OfferListComponent-root-1"
 >
   <div
     className="OfferListComponent-offerListHeader-3"

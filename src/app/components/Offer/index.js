@@ -112,7 +112,11 @@ class OfferComponent extends React.Component {
                 </List>
                 <Divider />
                 <Typography type="headline">
-                  <Button raised color="primary" className={classes.button}>
+                  <Button
+                    raised="false"
+                    color="primary"
+                    className={classes.button}
+                  >
                     {translation.btnContact}
                   </Button>
                 </Typography>
@@ -166,7 +170,11 @@ class OfferComponent extends React.Component {
                 >
                   <Grid item xs>
                     <Paper elevation={0} className={classes.right}>
-                      <Button raised color="primary" className={classes.button}>
+                      <Button
+                        raised="false"
+                        color="primary"
+                        className={classes.button}
+                      >
                         {translation.btnContact}
                       </Button>
                     </Paper>

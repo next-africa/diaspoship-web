@@ -134,7 +134,6 @@ describe('OfferList Container', () => {
     expect(offerList.prop('error')).toEqual(INITIAL_STATE.error);
     expect(offerList.prop('isFetching')).toEqual(INITIAL_STATE.isFetching);
     expect(offerList.prop('offers')).toEqual(INITIAL_STATE.offers);
-    expect(offerList.prop('filters')).toEqual(INITIAL_STATE.filters);
   });
 
   it('dispatches fetchOffers when onFetchOffers is called', () => {

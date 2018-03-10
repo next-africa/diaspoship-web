@@ -88,7 +88,7 @@ class MenuProfile extends React.Component {
         <Popover
           open={open}
           anchorEl={anchorEl}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
           anchorOrigin={{
             vertical: anchorOriginVertical,
             horizontal: anchorOriginHorizontal

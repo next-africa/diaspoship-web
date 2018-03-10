@@ -82,7 +82,7 @@ class OfferListComponent extends React.Component {
           <div className={classes.offerListContent}>
             {offers.map(offer => (
               <Button
-                raised
+                raised="false"
                 key={offer.id}
                 onClick={() => history.push(`/offers/${offer.id}`)}
                 className={classes.offerThumbnailButton}
@@ -101,6 +101,7 @@ OfferListComponent.propTypes = {
   classes: PropTypes.object.isRequired,
   error: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
+  filters: PropTypes.shape({ from: PropTypes.string, to: PropTypes.string }),
   offers: PropTypes.arrayOf(OfferType).isRequired,
   onFetchOffers: PropTypes.func.isRequired
 };
